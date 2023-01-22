@@ -1,8 +1,19 @@
+import { Row } from "./components/layout/Layout";
+import Header from "./components/Header/Header";
+import Quotes from "./components/Quotes/Quotes";
+import Search from "./components/Search/Search";
+import Copyright from "./components/Copyright/Copyright";
+
 function App() {
   return (
-    <div className="App">
-     <h1>Hello</h1>
-    </div>
-  )
+    <Row>
+      <div className="App">
+        <Header />
+        <Quotes />
+        <Search />
+        <Copyright />
+      </div>
+    </Row>
+  );
 }
-export default App
+export default App;
