@@ -1,0 +1,41 @@
+@use "../src/sass/variables" as *;
+
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6.4rem 0;
+
+  input[type=text] {
+    font-family: "Fira Code";
+    font-size: 2.4rem;
+    background-color: transparent;
+    outline: none;
+    width: 100%;
+    height: 9.6rem;
+
+    border: 3px solid $light-secondary;
+    border-radius: 8px;
+    padding: 2rem;
+    color: $light-primary;
+    transition: all .5s ease-in-out;
+
+    &:focus {
+      border-color: $accent-color;
+    }
+  }
+
+  .pointer {
+    width: 4.2rem;
+    height: max-content;
+    position: absolute;
+    right: 2rem;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}

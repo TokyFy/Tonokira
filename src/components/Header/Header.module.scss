@@ -1,0 +1,15 @@
+.Header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .logo {
+    height: 4.2rem;
+    width: max-content;
+
+    img {
+      height: 100%;
+      width: auto;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+@use "../src/sass/variables" as *;
+
+.copyright {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: 2rem;
+
+  p {
+    display: flex;
+    align-items: center;
+
+    span {
+      margin:.5em ;
+    }
+
+    a {
+      color: $accent-color;
+      margin-left: .5em;
+    }
+  }
+}
