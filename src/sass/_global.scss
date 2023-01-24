@@ -12,9 +12,14 @@
 
 body {
   background-color: $dark-color;
-  font-family: "Fira Code";
+  font-family: "Fira Code", sans-serif;
   color: $light-primary;
   font-size: 1.8rem;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 body,
@@ -36,7 +41,7 @@ a {
 .App {
   width: 100%;
   min-height: 100%;
-  padding-top: 12.8rem;
+  padding-top: 6.4rem;
   display: flex;
   flex-direction: column;
 }
