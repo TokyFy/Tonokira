@@ -4,11 +4,17 @@
   border: 2px solid $light-secondary;
   padding: 1rem;
   border-radius: .8rem;
+  transition: all 1s ease;
+
+  &:hover {
+    border-color: $accent-color;
+  }
 
   .image {
     overflow: hidden;
     border-radius: .8rem;
     width: 100%;
+    height: fit-content;
 
     img {
       width: 100%;
