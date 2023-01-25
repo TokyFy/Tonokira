@@ -4,6 +4,7 @@ import Copyright from "./components/Copyright/Copyright";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Page/Home/Home";
 import Result from "./Page/Result/Result";
+import Lyrics from "./Page/Lyrics/Lyrics";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="search" element={<Result />} />
+          <Route path="lyrics" element={<Lyrics />} />
         </Routes>
         <Copyright />
       </div>

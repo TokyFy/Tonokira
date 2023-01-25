@@ -1,10 +1,11 @@
 @use "../../sass/variables"  as *;
 
 .musicCard {
-  border: 2px solid $light-secondary;
+  border: 3px solid $light-secondary;
   padding: 1rem;
   border-radius: .8rem;
   transition: all 1s ease;
+  cursor: pointer;
 
   &:hover {
     border-color: $accent-color;

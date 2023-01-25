@@ -1,0 +1,28 @@
+@use "../../sass/variables" as *;
+
+.lyrics {
+
+  padding: 6.4rem 0;
+
+  .lyricsHeader {
+    text-align: center;
+
+    .title {
+      color: $accent-color;
+    }
+
+    .artist {
+      font-size: .8em;
+      color: $light-secondary;
+    }
+  }
+
+  .lyricsContent {
+
+    margin-top: 3.2rem;
+
+    .lyricsParagraph {
+      text-align: center;
+    }
+  }
+}
