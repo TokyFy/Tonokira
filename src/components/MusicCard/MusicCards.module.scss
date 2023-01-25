@@ -12,11 +12,10 @@
   }
 
   .image {
+    display: flex;
     overflow: hidden;
     border-radius: .8rem;
     width: 100%;
-    height: fit-content;
-
     img {
       width: 100%;
       height: auto;
@@ -24,6 +23,7 @@
   }
 
   .description {
+    margin-top: .6rem;
     font-family: "Fira Code", sans-serif ;
     font-size: 1.2rem;
     display: flex;
@@ -37,6 +37,10 @@
     .album , .artist {
       font-size: .8rem;
       color: $light-secondary;
+    }
+
+    .artist {
+      display: inline;
     }
   }
 }

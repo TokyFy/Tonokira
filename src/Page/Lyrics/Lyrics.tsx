@@ -41,8 +41,14 @@ const Lyrics: FunctionComponent<Props> = (props) => {
         <p className={style.artist}>By Clairo</p>
       </div>
       <div className={style.lyricsContent}>
-        {lyrics.map((el) => (
-          <p className={style.lyricsParagraph}>{el}</p>
+        {lyrics.map((el, index) => (
+          <p
+            className={`${style.lyricsParagraph} ${
+              index % 4 === 0 ? style.verse : ""
+            }`}
+          >
+            {el}
+          </p>
         ))}
       </div>
     </div>

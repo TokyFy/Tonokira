@@ -1,12 +1,16 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 import style from "./Search.module.scss";
 import Pointer from "../../Assets/image/pointer.svg";
 
-interface OwnProps {}
+interface OwnProps {
+  onClick: (str: string) => void;
+}
 
 type Props = OwnProps;
 
-const Search: FunctionComponent<Props> = (props) => {
+const Search: FunctionComponent<Props> = ({ onClick }) => {
+  const [value, setValue] = useState("");
+
   return (
     <div className={style.search}>
       <input
@@ -15,9 +19,10 @@ const Search: FunctionComponent<Props> = (props) => {
         id="music"
         autoComplete={"off"}
         placeholder={"Find your song’s lyrics now !!"}
+        onChange={(el) => setValue(el.target.value)}
       />
       <span className={style.pointer}>
-        <img src={Pointer} alt={""} />
+        <img src={Pointer} alt={""} onClick={() => onClick(value)} />
       </span>
     </div>
   );

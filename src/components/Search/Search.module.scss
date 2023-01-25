@@ -36,6 +36,17 @@
     img {
       width: 100%;
       height: auto;
+      animation: loading 1s ease alternate infinite;
     }
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.2);
   }
 }
