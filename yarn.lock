@@ -528,11 +528,6 @@ scheduler@^0.23.0:
   dependencies:
     loose-envify "^1.1.0"
 
-simple-netease-cloud-music@^0.5.2:
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/simple-netease-cloud-music/-/simple-netease-cloud-music-0.5.2.tgz#3007a05ebc11496820e6b9898077bdeb7a5e6313"
-  integrity sha512-U7tFsXLfA/Ocrmbn/KxBpcFL0Xj+iwCb4Onltp4VnQQVLTzkYxD7hh+13Vx5n6GWg/qHHm6p/v0EFyEXuwqSIg==
-
 "source-map-js@>=0.6.2 <2.0.0", source-map-js@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
