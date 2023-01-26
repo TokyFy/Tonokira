@@ -29,4 +29,15 @@ const MusicCards: FunctionComponent<Props> = ({
   );
 };
 
+export const MusicCardSkeleton: FunctionComponent = () => {
+  return (
+    <div className={style.musicCardSkeleton}>
+      <div className={style.image}></div>
+      <p className={style.description}>
+        <span className={style.title}></span>
+      </p>
+    </div>
+  );
+};
+
 export default MusicCards;
