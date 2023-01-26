@@ -13,24 +13,28 @@ type Props = OwnProps;
 const Result: FunctionComponent<Props> = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(true);
-
   const query = searchParams.get("q");
-
   const [Results, setResults] = useState<ISongs[]>([]);
 
   useEffect(() => {
-    search(`${query}`).then((result) => setResults(result));
+    if (query) {
+      search(`${query}`).then((result) => {
+        setResults(result);
+        setIsLoading(false);
+      });
+    }
   }, [query]);
 
   const searchHandler = (str: string) => {
     setResults([]);
     setSearchParams({ q: str });
     search(str).then((result) => setResults(result));
+    setIsLoading(true);
   };
 
   return (
     <>
-      <Search onClick={searchHandler} />
+      <Search onClick={searchHandler} InputValue={query || ""} />
       <div className={style.result}>
         {isLoading ? (
           <>

@@ -7,10 +7,10 @@ interface IResponse {
   };
 }
 
+const REST_END_POINT = String(import.meta.env.VITE_REST_END_POINT);
+
 export async function search(query: string): Promise<ISongs[]> {
-  const res = await axios.get<IResponse>(
-    `http://localhost:8010/proxy/${query}`
-  );
+  const res = await axios.get<IResponse>(`${REST_END_POINT}/${query}`);
 
   return res.data.data.Music.splice(0, 4);
 }

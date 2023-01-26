@@ -33,9 +33,7 @@ export const MusicCardSkeleton: FunctionComponent = () => {
   return (
     <div className={style.musicCardSkeleton}>
       <div className={style.image}></div>
-      <p className={style.description}>
-        <span className={style.title}></span>
-      </p>
+      <p className={style.description}></p>
     </div>
   );
 };
