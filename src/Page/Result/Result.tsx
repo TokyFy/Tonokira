@@ -6,35 +6,48 @@ import Search from "../../components/Search/Search";
 
 import { useSearchParams } from "react-router-dom";
 import { ISongs, search } from "../../service/musicService";
+import Error from "../../components/Error/Error";
 
 interface OwnProps {}
+
 type Props = OwnProps;
 
 const Result: FunctionComponent<Props> = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
   const query = searchParams.get("q");
   const [Results, setResults] = useState<ISongs[]>([]);
 
-  useEffect(() => {
-    if (query) {
-      search(`${query}`).then((result) => {
-        setResults(result);
-        setIsLoading(false);
-      });
-    }
-  }, [query]);
-
   const searchHandler = (str: string) => {
-    setResults([]);
-    setSearchParams({ q: str });
-    search(str).then((result) => setResults(result));
-    setIsLoading(true);
+    if (str.trim() !== "") {
+      setIsLoading(true);
+      setError(false);
+      setResults([]);
+      setSearchParams({ q: str });
+      search(str)
+        .then((result) => setResults(result))
+        .catch(() => setError(true))
+        .finally(() => setIsLoading(false));
+    }
   };
+
+  useEffect(() => {
+    if (query !== null && query !== "") {
+      searchHandler(query || "");
+    } else {
+      setIsLoading(false);
+      setError(true);
+    }
+  }, []);
 
   return (
     <>
-      <Search onClick={searchHandler} InputValue={query || ""} />
+      <Search
+        onClick={searchHandler}
+        InputValue={query || ""}
+        placeHolder={"e.g.: Clairo"}
+      />
       <div className={style.result}>
         {isLoading ? (
           <>
@@ -43,6 +56,8 @@ const Result: FunctionComponent<Props> = (props) => {
             <MusicCardSkeleton />
             <MusicCardSkeleton />
           </>
+        ) : error ? (
+          <Error />
         ) : (
           Results.map((song, index) => (
             <MusicCards

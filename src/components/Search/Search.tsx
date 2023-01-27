@@ -5,11 +5,16 @@ import Pointer from "../../Assets/image/pointer.svg";
 interface OwnProps {
   onClick: (str: string) => void;
   InputValue?: string;
+  placeHolder?: string;
 }
 
 type Props = OwnProps;
 
-const Search: FunctionComponent<Props> = ({ onClick, InputValue }) => {
+const Search: FunctionComponent<Props> = ({
+  onClick,
+  InputValue,
+  placeHolder,
+}) => {
   const [value, setValue] = useState("");
 
   useEffect(() => {
@@ -23,7 +28,7 @@ const Search: FunctionComponent<Props> = ({ onClick, InputValue }) => {
         name="search"
         id="music"
         autoComplete={"off"}
-        placeholder={"Find your song’s lyrics now !!"}
+        placeholder={placeHolder || "Find your song’s lyrics now !!"}
         onChange={(el) => setValue(el.target.value)}
         value={value}
       />
