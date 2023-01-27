@@ -66,6 +66,7 @@ const Result: FunctionComponent<Props> = (props) => {
               album={song.Album.name}
               artist={song.Artists[0].name}
               key={index}
+              songId={song.id}
             />
           ))
         )}

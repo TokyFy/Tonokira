@@ -1,3 +1,3 @@
-import { search } from "../src/service";
+import { Getlyrics } from "../src/service";
 
-search("clairo").then((el) => console.log(el));
+Getlyrics("501220481").then((el) => console.log(el));

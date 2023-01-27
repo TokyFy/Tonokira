@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="search" element={<Result />} />
-          <Route path="lyrics" element={<Lyrics />} />
+          <Route path="lyrics/:id" element={<Lyrics />} />
         </Routes>
         <Copyright />
       </div>

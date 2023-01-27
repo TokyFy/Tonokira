@@ -1,11 +1,13 @@
 import React, { FunctionComponent } from "react";
 import style from "./MusicCards.module.scss";
+import { useNavigate } from "react-router-dom";
 
 interface OwnProps {
   image: string;
   title: string;
   album: string;
   artist: string;
+  songId: string;
 }
 type Props = OwnProps;
 
@@ -14,9 +16,16 @@ const MusicCards: FunctionComponent<Props> = ({
   title,
   artist,
   album,
+  songId,
 }) => {
+  const navigate = useNavigate();
+
+  const clickHandler = () => {
+    navigate(`/lyrics/${songId}`);
+  };
+
   return (
-    <div className={style.musicCard}>
+    <div className={style.musicCard} onClick={() => clickHandler()}>
       <div className={style.image}>
         <img src={image} alt="" />
       </div>

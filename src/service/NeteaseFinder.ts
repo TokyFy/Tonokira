@@ -1,16 +1,25 @@
-import { ISongs } from "./musicService";
+import { ISongs, ILyrics } from "./musicService";
 import axios from "axios";
 
-interface IResponse {
+interface ISearchResponse {
   data: {
     Music: ISongs[];
   };
 }
 
+interface ILyricsResponse {
+  data: {
+    lyrics: ILyrics;
+  };
+}
+
 const REST_END_POINT = String(import.meta.env.VITE_REST_END_POINT);
+// const REST_END_POINT = "http://localhost:8010/proxy";
 
 export async function search(query: string): Promise<ISongs[]> {
-  const res = await axios.get<IResponse>(`${REST_END_POINT}/${query}`);
+  const res = await axios.get<ISearchResponse>(
+    `${REST_END_POINT}/search/${query}`
+  );
 
   return res.data.data.Music.splice(0, 4);
 }
@@ -21,4 +30,7 @@ export async function search(query: string): Promise<ISongs[]> {
 //
 // async function artist(id: string): Promise<IArtist> {}
 //
-// async function lyrics(id: string): Promise<ILyrics> {}
+export async function Getlyrics(id: string): Promise<ILyrics> {
+  const res = await axios.get<ILyricsResponse>(`${REST_END_POINT}/lyric/${id}`);
+  return res.data.data.lyrics;
+}
