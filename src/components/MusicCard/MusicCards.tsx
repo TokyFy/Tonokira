@@ -21,7 +21,7 @@ const MusicCards: FunctionComponent<Props> = ({
   const navigate = useNavigate();
 
   const clickHandler = () => {
-    navigate(`/lyrics/${songId}`);
+    navigate(`/lyrics/${songId}`, { state: { title: title, artist: artist } });
   };
 
   return (

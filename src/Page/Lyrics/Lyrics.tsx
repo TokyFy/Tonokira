@@ -1,8 +1,9 @@
 import React, { FunctionComponent, useState } from "react";
 import style from "./Lyrics.module.scss";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { Getlyrics } from "../../service";
 import { useQuery } from "react-query";
+import LyricsSkeleton from "./LyricsSkeleton";
 
 interface OwnProps {}
 
@@ -11,10 +12,10 @@ type Props = OwnProps;
 const Lyrics: FunctionComponent<Props> = (props) => {
   const { id } = useParams();
 
-  const [query, setQuery] = useState(id);
+  const { title, artist } = useLocation().state;
 
   const { isLoading, isError, data, error, refetch } = useQuery(
-    ["search", query],
+    ["search", id],
     ({}) => Getlyrics(`${id}`),
     {
       staleTime: 5 * (60 * 1000),
@@ -34,21 +35,25 @@ const Lyrics: FunctionComponent<Props> = (props) => {
   return (
     <div className={style.lyrics}>
       <div className={style.lyricsHeader}>
-        <p className={style.title}>Amoeba</p>
-        <p className={style.artist}>By Clairo</p>
+        <p className={style.title}>{title}</p>
+        <p className={style.artist}>By {artist}</p>
       </div>
-      <div className={style.lyricsContent}>
-        {lyrics?.map((el, index) => (
-          <p
-            className={`${style.lyricsParagraph} ${
-              index % 4 === 0 ? style.verse : ""
-            }`}
-            key={index}
-          >
-            {el}
-          </p>
-        ))}
-      </div>
+      {isLoading ? (
+        <LyricsSkeleton />
+      ) : (
+        <div className={style.lyricsContent}>
+          {lyrics?.map((el, index) => (
+            <p
+              className={`${style.lyricsParagraph} ${
+                index % 4 === 0 ? style.verse : ""
+              }`}
+              key={index}
+            >
+              {el}
+            </p>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
