@@ -1,12 +1,13 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
+import React, { FunctionComponent, useState } from "react";
 import style from "./Result.module.scss";
 import MusicCards from "../../components/MusicCard/MusicCards";
 import { MusicCardSkeleton } from "../../components/MusicCard/MusicCards";
 import Search from "../../components/Search/Search";
 
 import { useSearchParams } from "react-router-dom";
-import { ISongs, search } from "../../service/musicService";
+import { searchSongs } from "../../service";
 import Error from "../../components/Error/Error";
+import { useQuery } from "react-query";
 
 interface OwnProps {}
 
@@ -14,37 +15,28 @@ type Props = OwnProps;
 
 const Result: FunctionComponent<Props> = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const query = searchParams.get("q");
-  const [Results, setResults] = useState<ISongs[]>([]);
+  const [query, setQuery] = useState(searchParams.get("q"));
 
-  const searchHandler = (str: string) => {
-    if (str.trim() !== "") {
-      setIsLoading(true);
-      setError(false);
-      setResults([]);
+  const { isLoading, isError, data, error, refetch } = useQuery(
+    ["search", query],
+    ({}) => searchSongs(`${query}`),
+    {
+      staleTime: 5 * (60 * 1000),
+      cacheTime: 2.5 * (60 * 1000),
+    }
+  );
+
+  const clickHandler = async (str: string) => {
+    if (!(str.trim() === "")) {
       setSearchParams({ q: str });
-      search(str)
-        .then((result) => setResults(result))
-        .catch(() => setError(true))
-        .finally(() => setIsLoading(false));
+      setQuery(str);
     }
   };
-
-  useEffect(() => {
-    if (query !== null && query !== "") {
-      searchHandler(query || "");
-    } else {
-      setIsLoading(false);
-      setError(true);
-    }
-  }, []);
 
   return (
     <>
       <Search
-        onClick={searchHandler}
+        onClick={clickHandler}
         InputValue={query || ""}
         placeHolder={"e.g.: Clairo"}
       />
@@ -56,10 +48,10 @@ const Result: FunctionComponent<Props> = (props) => {
             <MusicCardSkeleton />
             <MusicCardSkeleton />
           </>
-        ) : error ? (
+        ) : isError ? (
           <Error />
         ) : (
-          Results.map((song, index) => (
+          data!.map((song, index) => (
             <MusicCards
               image={`${song.AlbumArts}`}
               title={song.title}

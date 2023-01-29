@@ -16,7 +16,7 @@ interface ILyricsResponse {
 const REST_END_POINT = String(import.meta.env.VITE_REST_END_POINT);
 // const REST_END_POINT = "http://localhost:8010/proxy";
 
-export async function search(query: string): Promise<ISongs[]> {
+export async function searchSongs(query: string): Promise<ISongs[]> {
   const res = await axios.get<ISearchResponse>(
     `${REST_END_POINT}/search/${query}`
   );
