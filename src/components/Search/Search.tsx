@@ -21,6 +21,14 @@ const Search: FunctionComponent<Props> = ({
     setValue(InputValue || "");
   }, []);
 
+  const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (
+    event
+  ) => {
+    if (event.key === "Enter") {
+      onClick(value);
+    }
+  };
+
   return (
     <div className={style.search}>
       <input
@@ -30,6 +38,7 @@ const Search: FunctionComponent<Props> = ({
         autoComplete={"off"}
         placeholder={placeHolder || "Type here "}
         onChange={(el) => setValue(el.target.value)}
+        onKeyDown={handleKeyDown}
         value={value}
       />
       <span className={style.pointer}>

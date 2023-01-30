@@ -23,6 +23,11 @@
 
     .lyricsParagraph {
       text-align: center;
+      transition: all .5s ease;
+
+      &:hover {
+        color: $accent-color;
+      }
     }
 
     .verse {
