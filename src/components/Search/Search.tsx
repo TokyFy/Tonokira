@@ -28,7 +28,7 @@ const Search: FunctionComponent<Props> = ({
         name="search"
         id="music"
         autoComplete={"off"}
-        placeholder={placeHolder || "Find your song’s lyrics now !!"}
+        placeholder={placeHolder || "Type here "}
         onChange={(el) => setValue(el.target.value)}
         value={value}
       />

@@ -1,4 +1,5 @@
 @use "../src/sass/variables" as *;
+@use "../../sass/mixims";
 
 .copyright {
   display: flex;
@@ -7,6 +8,10 @@
   margin-top: auto;
   padding-top: 4rem;
   margin-bottom: 2rem;
+
+  @include mixims.breakpointsMaxWidth(600px) {
+    font-size: 1.2rem;
+  }
 
   p {
     display: flex;

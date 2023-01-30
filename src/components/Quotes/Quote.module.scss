@@ -1,5 +1,7 @@
+@use "../../sass/mixims";
+
 .quotes {
-  font-family: Forum;
+  font-family: Forum, sans-serif;
   margin: 6.4rem 0;
 
   .text {
@@ -7,6 +9,10 @@
     font-weight: 400;
     font-size: 4.8rem;
     text-align: center;
+
+    @include mixims.breakpointsMaxWidth(600px) {
+      font-size: 3.2rem;
+    }
   }
 
   .author {

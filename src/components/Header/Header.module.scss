@@ -1,3 +1,5 @@
+@use "../../sass/mixims";
+
 .Header {
   display: flex;
   align-items: center;
@@ -7,6 +9,10 @@
     cursor: pointer;
     height: 4.2rem;
     width: max-content;
+
+    @include mixims.breakpointsMaxWidth(900px) {
+      height: 3.2rem;
+    }
 
     img {
       height: 100%;

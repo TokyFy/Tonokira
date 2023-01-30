@@ -1,4 +1,14 @@
+@use "../../sass/mixims";
+
 .row {
   width: 50%;
   margin: 0 auto;
+
+ @include mixims.breakpointsMaxWidth(1240px) {
+   width: 70%;
+ }
+
+  @include mixims.breakpointsMaxWidth(790px) {
+   width: 90%;
+ }
 }
