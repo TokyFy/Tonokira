@@ -5,7 +5,7 @@ const LyricsSkeleton: FunctionComponent = () => {
   return (
     <div className={style.LyricsSkeleton}>
       {[...Array(20)].map((value, index) => (
-        <p className={index % 4 === 0 ? style.verse : ""}></p>
+        <p key={index} className={index % 4 === 0 ? style.verse : ""}></p>
       ))}
     </div>
   );
