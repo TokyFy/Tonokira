@@ -7,6 +7,15 @@
   .lyricsHeader {
     text-align: center;
 
+    .albumCover {
+      margin-bottom: 2rem;
+      img {
+        border-radius: 2px;
+        width: 16rem;
+        height: auto;
+      }
+    }
+
     .title {
       color: $accent-color;
     }
@@ -28,10 +37,10 @@
       &:hover {
         color: $accent-color;
       }
-    }
 
-    .verse {
-      margin-top: 2rem;
+      &:nth-child(4n) {
+        margin-top: 2rem;
+      }
     }
   }
 }
@@ -46,10 +55,10 @@
     margin: 1.5rem auto;
     animation: 1s loading ease-in-out infinite alternate-reverse;
     border-radius: .2em;
-  }
 
-  .verse {
-    margin-top: 3rem;
+    &:nth-child(4n) {
+      margin-top: 2rem;
+    }
   }
 }
 

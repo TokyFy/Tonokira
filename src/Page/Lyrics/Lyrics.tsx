@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent } from "react";
 import style from "./Lyrics.module.scss";
 import { useLocation, useParams } from "react-router-dom";
 import { Getlyrics } from "../../service";
@@ -12,7 +12,7 @@ type Props = OwnProps;
 const Lyrics: FunctionComponent<Props> = (props) => {
   const { id } = useParams();
 
-  const { title, artist } = useLocation().state;
+  const { title, artist, image } = useLocation().state;
 
   const { isLoading, isError, data, error, refetch } = useQuery(
     ["search", id],
@@ -35,6 +35,9 @@ const Lyrics: FunctionComponent<Props> = (props) => {
   return (
     <div className={style.lyrics}>
       <div className={style.lyricsHeader}>
+        <div className={style.albumCover}>
+          <img src={image} alt={"album cover"} />
+        </div>
         <p className={style.title}>{title}</p>
         <p className={style.artist}>By {artist}</p>
       </div>
@@ -43,12 +46,7 @@ const Lyrics: FunctionComponent<Props> = (props) => {
       ) : (
         <div className={style.lyricsContent}>
           {lyrics?.map((el, index) => (
-            <p
-              className={`${style.lyricsParagraph} ${
-                index % 4 === 0 ? style.verse : ""
-              }`}
-              key={index}
-            >
+            <p className={style.lyricsParagraph} key={index}>
               {el}
             </p>
           ))}
