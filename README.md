@@ -10,6 +10,7 @@ Tonokira is a lyrics finder app that helps you discover the lyrics to your favor
 - [x] Search lyrics by song title or artist 🔎
 - [x] Lyrics are displayed in an easy-to-read format 📝
 - [ ] Save your favorite lyrics for easy access ❤️
+- [ ] Light/Dak themes ☀
 
 ## How to use 💻
 ```shell

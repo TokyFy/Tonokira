@@ -25,7 +25,7 @@ const Lyrics: FunctionComponent<Props> = (props) => {
 
   const lyrics = data?.lyric
     .split("\n")
-    .slice(2)
+    .filter((el) => !(el.includes("[00:00.000]") || el.includes("[00:01.000]")))
     .map((el) => {
       return el
         .replace(/\[\d{2,3}:\d{2,3}\.\d{2,3}]/, "")
