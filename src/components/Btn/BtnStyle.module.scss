@@ -2,9 +2,15 @@
 
 .Btn {
   font-size: 1.4rem;
-  background-color: $accent-color;
+  //background-color: $accent-color;
+  border: 2px solid $accent-color;
   width: max-content;
   padding: 1.4rem 3.2rem;
   border-radius: 1.2rem;
   cursor: pointer;
+  transition: all .4s ease-in;
+
+  &:hover {
+    background-color: $accent-color;
+  }
 }
