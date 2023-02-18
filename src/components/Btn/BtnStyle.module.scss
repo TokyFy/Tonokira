@@ -1,0 +1,10 @@
+@use "../../sass/variables" as *;
+
+.Btn {
+  font-size: 1.4rem;
+  background-color: $accent-color;
+  width: max-content;
+  padding: 1.4rem 3.2rem;
+  border-radius: 1.2rem;
+  cursor: pointer;
+}

@@ -4,6 +4,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { Getlyrics } from "../../service";
 import { useQuery } from "react-query";
 import LyricsSkeleton from "./LyricsSkeleton";
+import Btn from "../../components/Btn/Btn";
 
 interface OwnProps {}
 
@@ -44,13 +45,18 @@ const Lyrics: FunctionComponent<Props> = (props) => {
       {isLoading ? (
         <LyricsSkeleton />
       ) : (
-        <div className={style.lyricsContent}>
-          {lyrics?.map((el, index) => (
-            <p className={style.lyricsParagraph} key={index}>
-              {el}
-            </p>
-          ))}
-        </div>
+        <>
+          <div className={style.lyricsContent}>
+            {lyrics?.map((el, index) => (
+              <p className={style.lyricsParagraph} key={index}>
+                {el}
+              </p>
+            ))}
+          </div>
+          <div className={style.btnWrapper}>
+            <Btn value={"Get Lyrics"} onClick={() => {}} />
+          </div>
+        </>
       )}
     </div>
   );
