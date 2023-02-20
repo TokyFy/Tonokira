@@ -4,8 +4,8 @@ import { useLocation, useParams } from "react-router-dom";
 import { Getlyrics } from "../../service";
 import { useQuery } from "react-query";
 import LyricsSkeleton from "./LyricsSkeleton";
-import { IMAGE_PROXY_URL } from "../../constant";
 import Btn from "../../components/Btn/Btn";
+import { IMAGE_PROXY_URL } from "../../constant";
 
 interface OwnProps {}
 
@@ -25,6 +25,18 @@ const Lyrics: FunctionComponent<Props> = (props) => {
     }
   );
 
+  function downloadTxtFile(Lrc: string, title: string, Artist: string) {
+    const blob = new Blob([Lrc], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${title} - ${Artist}.lrc`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }
+
   const lyrics = data?.lyric
     .split("\n")
     .filter((el) => !(el.includes("[00:00.000]") || el.includes("[00:01.000]")))
@@ -38,7 +50,10 @@ const Lyrics: FunctionComponent<Props> = (props) => {
     <div className={style.lyrics}>
       <div className={style.lyricsHeader}>
         <div className={style.albumCover}>
-          <img src={image} alt={"album cover"} />
+          <img
+            src={`${IMAGE_PROXY_URL}/tr:w-400/${image}`}
+            alt={"album cover"}
+          />
         </div>
         <p className={style.title}>{title}</p>
         <p className={style.artist}>By {artist}</p>
@@ -46,13 +61,21 @@ const Lyrics: FunctionComponent<Props> = (props) => {
       {isLoading ? (
         <LyricsSkeleton />
       ) : (
-        <div className={style.lyricsContent}>
-          {lyrics?.map((el, index) => (
-            <p className={style.lyricsParagraph} key={index}>
-              {el}
-            </p>
-          ))}
-        </div>
+        <>
+          <div className={style.lyricsContent}>
+            {lyrics?.map((el, index) => (
+              <p className={style.lyricsParagraph} key={index}>
+                {el}
+              </p>
+            ))}
+          </div>
+          <div className={style.btnWrapper}>
+            <Btn
+              value={"Get Lyrics"}
+              onClick={() => downloadTxtFile(`${data?.lyric}`, title, artist)}
+            />
+          </div>
+        </>
       )}
     </div>
   );
