@@ -4,6 +4,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { Getlyrics } from "../../service";
 import { useQuery } from "react-query";
 import LyricsSkeleton from "./LyricsSkeleton";
+import { IMAGE_PROXY_URL } from "../../constant";
 
 interface OwnProps {}
 
@@ -36,7 +37,10 @@ const Lyrics: FunctionComponent<Props> = (props) => {
     <div className={style.lyrics}>
       <div className={style.lyricsHeader}>
         <div className={style.albumCover}>
-          <img src={image} alt={"album cover"} />
+          <img
+            src={`${IMAGE_PROXY_URL}/tr:w-400/${image}`}
+            alt={"album cover"}
+          />
         </div>
         <p className={style.title}>{title}</p>
         <p className={style.artist}>By {artist}</p>

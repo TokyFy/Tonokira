@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from "react";
 import style from "./MusicCards.module.scss";
 import { useNavigate } from "react-router-dom";
+import { IMAGE_PROXY_URL } from "../../constant";
 
 interface OwnProps {
   image: string;
@@ -29,7 +30,7 @@ const MusicCards: FunctionComponent<Props> = ({
   return (
     <div className={style.musicCard} onClick={() => clickHandler()}>
       <div className={style.image}>
-        <img src={image} alt="" />
+        <img src={`${IMAGE_PROXY_URL}/tr:w-400/${image}`} alt="" />
       </div>
       <p className={style.description}>
         <span className={style.title}>{title}</span>
