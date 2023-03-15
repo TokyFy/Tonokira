@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 import style from "./Lyrics.module.scss";
 import { useLocation, useParams } from "react-router-dom";
-import { Getlyrics } from "../../service";
+import { GetLyrics } from "../../service";
 import { useQuery } from "react-query";
 import LyricsSkeleton from "./LyricsSkeleton";
 import Btn from "../../components/Btn/Btn";
@@ -18,7 +18,7 @@ const Lyrics: FunctionComponent<Props> = (props) => {
 
   const { isLoading, isError, data, error, refetch } = useQuery(
     ["search", id],
-    ({}) => Getlyrics(`${id}`),
+    ({}) => GetLyrics(`${id}`),
     {
       staleTime: 5 * (60 * 1000),
       cacheTime: 2.5 * (60 * 1000),

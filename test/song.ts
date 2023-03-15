@@ -1,3 +1,3 @@
-import { Getlyrics } from "../src/service";
+import { GetLyrics } from "../src/service";
 
-Getlyrics("501220481").then((el) => console.log(el));
+GetLyrics("501220481").then((el) => console.log(el));

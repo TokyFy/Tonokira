@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./Page/Home/Home";
 import Result from "./Page/Result/Result";
 import Lyrics from "./Page/Lyrics/Lyrics";
+import Artist from "./Page/Artist/Artist";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="search" element={<Result />} />
           <Route path="lyrics/:id" element={<Lyrics />} />
+          <Route path="artist/:id" element={<Artist />} />
         </Routes>
         <Copyright />
       </div>

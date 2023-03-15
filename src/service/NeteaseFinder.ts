@@ -1,4 +1,4 @@
-import { ISongs, ILyrics } from "./musicService";
+import { ISongs, ILyrics, IArtist } from "./musicService";
 import axios from "axios";
 
 interface ISearchResponse {
@@ -10,6 +10,17 @@ interface ISearchResponse {
 interface ILyricsResponse {
   data: {
     lyrics: ILyrics;
+  };
+}
+
+interface IArtistResponse {
+  data: {
+    artist: {
+      name: string;
+      id: string;
+      picUrl: string;
+      hotSong: ISongs[];
+    };
   };
 }
 
@@ -28,9 +39,14 @@ export async function searchSongs(query: string): Promise<ISongs[]> {
 //
 // async function album(id: string): Promise<IAlbum> {}
 //
-// async function artist(id: string): Promise<IArtist> {}
-//
-export async function Getlyrics(id: string): Promise<ILyrics> {
+export async function GetArtist(id: string): Promise<IArtist> {
+  const res = await axios.get<IArtistResponse>(
+    `${REST_END_POINT}/artist/${id}`
+  );
+  return res.data.data.artist;
+}
+
+export async function GetLyrics(id: string): Promise<ILyrics> {
   const res = await axios.get<ILyricsResponse>(`${REST_END_POINT}/lyric/${id}`);
   return res.data.data.lyrics;
 }

@@ -1,0 +1,38 @@
+@use "../../sass/variables" as *;
+@use "../../sass/mixims";
+
+.artist {
+  padding: 6.4rem 0;
+
+  .ArtistHeader {
+    text-align: center;
+
+    .albumCover {
+      margin-bottom: 2rem;
+      img {
+        border-radius: 2px;
+        width: 16rem;
+        height: auto;
+      }
+    }
+    .artistName {
+      font-size: 1em;
+      color: $light-primary;
+      font-weight: bold;
+    }
+  }
+
+  .songs {
+    display: grid;
+    gap: 2.4rem;
+    grid-template-columns: repeat(4 , 1fr);
+
+    @include mixims.breakpointsMaxWidth(760px) {
+      grid-template-columns: repeat(2 , 1fr);
+    }
+
+    @include mixims.breakpointsMaxWidth(390px) {
+      grid-template-columns: repeat(1 , 1fr);
+    }
+  }
+}
