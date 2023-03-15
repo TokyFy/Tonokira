@@ -1,4 +1,4 @@
-import { ISongs, ILyrics, IArtist } from "./musicService";
+import { ISongs, ILyrics, IArtist, IPicture } from "./musicService";
 import axios from "axios";
 
 interface ISearchResponse {
@@ -24,6 +24,14 @@ interface IArtistResponse {
   };
 }
 
+interface IPictureResponse {
+  data: {
+    picture: {
+      url: string;
+    };
+  };
+}
+
 const REST_END_POINT = String(import.meta.env.VITE_REST_END_POINT);
 // const REST_END_POINT = "http://localhost:8010/proxy";
 
@@ -43,7 +51,16 @@ export async function GetArtist(id: string): Promise<IArtist> {
   const res = await axios.get<IArtistResponse>(
     `${REST_END_POINT}/artist/${id}`
   );
+
   return res.data.data.artist;
+}
+
+export async function GetPictures(id: string): Promise<IPicture> {
+  const res = await axios.get<IPictureResponse>(
+    `${REST_END_POINT}/picture/${id}`
+  );
+
+  return res.data.data.picture;
 }
 
 export async function GetLyrics(id: string): Promise<ILyrics> {

@@ -16,6 +16,10 @@
       }
     }
     .artistName {
+      width: max-content;
+      margin: 0 auto;
+      padding: 1rem 1.6rem;
+      background-color: $accent-color;
       font-size: 1em;
       color: $light-primary;
       font-weight: bold;
@@ -23,6 +27,7 @@
   }
 
   .songs {
+    margin-top: 6.4rem;
     display: grid;
     gap: 2.4rem;
     grid-template-columns: repeat(4 , 1fr);

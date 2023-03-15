@@ -16,14 +16,16 @@ const Lyrics: FunctionComponent<Props> = (props) => {
 
   const { title, artist, image } = useLocation().state;
 
-  const { isLoading, isError, data, error, refetch } = useQuery(
-    ["search", id],
-    ({}) => GetLyrics(`${id}`),
-    {
-      staleTime: 5 * (60 * 1000),
-      cacheTime: 2.5 * (60 * 1000),
-    }
-  );
+  const {
+    isLoading,
+    isError,
+    data: LyricsData,
+    error,
+    refetch,
+  } = useQuery(["search", id], ({}) => GetLyrics(`${id}`), {
+    staleTime: 5 * (60 * 1000),
+    cacheTime: 2.5 * (60 * 1000),
+  });
 
   function downloadTxtFile(Lrc: string, title: string, Artist: string) {
     const blob = new Blob([Lrc], { type: "text/plain" });
@@ -37,7 +39,7 @@ const Lyrics: FunctionComponent<Props> = (props) => {
     URL.revokeObjectURL(url);
   }
 
-  const lyrics = data?.lyric
+  const lyrics = LyricsData?.lyric
     .split("\n")
     .filter((el) => !(el.includes("[00:00.000]") || el.includes("[00:01.000]")))
     .map((el) => {
@@ -72,7 +74,9 @@ const Lyrics: FunctionComponent<Props> = (props) => {
           <div className={style.btnWrapper}>
             <Btn
               value={"Get Lyrics"}
-              onClick={() => downloadTxtFile(`${data?.lyric}`, title, artist)}
+              onClick={() =>
+                downloadTxtFile(`${LyricsData?.lyric}`, title, artist)
+              }
             />
           </div>
         </>

@@ -9,8 +9,6 @@ import MusicCards from "../../components/MusicCard/MusicCards";
 const Artist: FunctionComponent = (props) => {
   const { id } = useParams();
 
-  console.log(id);
-
   const { isLoading, isError, data, error, refetch } = useQuery(
     ["search", id],
     ({}) => GetArtist(`${id}`),
@@ -29,7 +27,7 @@ const Artist: FunctionComponent = (props) => {
   return (
     <>
       {isLoading ? (
-        <p>Loiding</p>
+        <p>Loading</p>
       ) : (
         <div className={style.artist}>
           <div className={style.ArtistHeader}>
@@ -51,6 +49,8 @@ const Artist: FunctionComponent = (props) => {
                 artist={song.Artists[0].name}
                 key={index}
                 songId={song.id}
+                ImageId={song.AlbumArtsID}
+                ArtistId={song.Artists[0].id}
               />
             ))}
           </div>
