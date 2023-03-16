@@ -25,19 +25,45 @@
       font-weight: bold;
     }
   }
+}
 
-  .songs {
-    margin-top: 6.4rem;
-    display: grid;
-    gap: 2.4rem;
-    grid-template-columns: repeat(4 , 1fr);
+.artist .songs ,
+.artistSkeleton .songs{
+  margin-top: 6.4rem;
+  display: grid;
+  gap: 2.4rem;
+  grid-template-columns: repeat(4 , 1fr);
 
-    @include mixims.breakpointsMaxWidth(760px) {
-      grid-template-columns: repeat(2 , 1fr);
-    }
+  @include mixims.breakpointsMaxWidth(760px) {
+    grid-template-columns: repeat(2 , 1fr);
+  }
 
-    @include mixims.breakpointsMaxWidth(390px) {
-      grid-template-columns: repeat(1 , 1fr);
-    }
+  @include mixims.breakpointsMaxWidth(390px) {
+    grid-template-columns: repeat(1 , 1fr);
+  }
+}
+
+.artistSkeleton {
+  margin-top: 3.2rem;
+
+  .image {
+    background-color: transparentize($light-secondary , .9);
+    width: 16rem;
+    aspect-ratio: 1;
+  }
+
+  .artistName {
+    height: 3.2rem;
+    width: 12rem;
+    background-color: transparentize($light-secondary , .9);
+    margin-top: 2rem;
+  }
+
+  .artistHeader {
+    width: max-content;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }

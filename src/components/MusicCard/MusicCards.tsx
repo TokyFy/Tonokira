@@ -48,7 +48,6 @@ const MusicCards: FunctionComponent<Props> = ({
 
   const ArtistNameClickHandler = () => {
     navigate(`/artist/${ArtistId}`);
-    console.log("CLICKERDDD");
   };
 
   return (

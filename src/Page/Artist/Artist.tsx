@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { GetArtist } from "../../service";
 import MusicCards from "../../components/MusicCard/MusicCards";
+import ArtistSkeleton from "./ArtistSkeleton";
 
 const Artist: FunctionComponent = (props) => {
   const { id } = useParams();
@@ -27,7 +28,7 @@ const Artist: FunctionComponent = (props) => {
   return (
     <>
       {isLoading ? (
-        <p>Loading</p>
+        <ArtistSkeleton />
       ) : (
         <div className={style.artist}>
           <div className={style.ArtistHeader}>
