@@ -1,10 +1,9 @@
 import React, { FunctionComponent, useEffect } from "react";
-import style from "./Artist.module.scss";
 import { IMAGE_PROXY_URL } from "../../constant";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { GetArtist } from "../../service";
-import MusicCards from "../../components/MusicCard/MusicCards";
+import MusicCards from "../../components/MusicCards";
 import ArtistSkeleton from "./ArtistSkeleton";
 
 const Artist: FunctionComponent = (props) => {

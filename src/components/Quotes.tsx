@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from "react";
-import style from "./Quote.module.scss";
 
 interface OwnProps {}
 

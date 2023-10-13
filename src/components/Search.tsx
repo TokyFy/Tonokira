@@ -25,14 +25,14 @@ const Search: FunctionComponent<Props> = ({ onClick, InputValue, placeHolder,}) 
     };
 
     return (
-        <div className={"flex border border-neutral-400 border-dashed h-10 items-center px-2 rounded bg-white"}>
+        <div className={"flex border border-neutral-300 h-10 items-center px-2 rounded bg-white hover:border-neutral-400"}>
             <input
-                className={"focus:outline-0 grow h-full text-md font-primary text-purple-500  placeholder:text-neutral-400"}
+                className={"focus:outline-0 grow h-full text-md font-primary text-neutral-700 font-bold placeholder:text-neutral-400"}
                 type="text"
                 name="search"
                 spellCheck={false}
                 autoComplete={"off"}
-                placeholder={placeHolder || "Ur best song..."}
+                placeholder={placeHolder || "Your best song ..."}
                 onChange={(el) => setValue(el.target.value)}
                 onKeyDown={handleKeyDown}
                 value={value}

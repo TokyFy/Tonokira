@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from "react";
-import style from "./Artist.module.scss";
-import { MusicCardSkeleton } from "../../components/MusicCard/MusicCards";
+import { MusicCardSkeleton } from "../../components/MusicCards";
 
 const ArtistSkeleton: FunctionComponent = () => {
   return (

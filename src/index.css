@@ -1,0 +1,28 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+*::selection {
+  background-color: #1c1c1c;
+  color: white;
+}
+
+*:first-letter::selection{
+  background-color: #1c1c1c!important;
+  color: white;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Edu";
+  src: url("/fonts/Edu.woff");
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}

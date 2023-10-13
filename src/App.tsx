@@ -1,6 +1,4 @@
-import { Row } from "./components/layout/Layout";
-import Header from "./components/Header/Header";
-import Copyright from "./components/Copyright/Copyright";
+import Header from "./components/Header";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Page/Home/Home";
 import Result from "./Page/Result/Result";
@@ -10,7 +8,7 @@ import Artist from "./Page/Artist/Artist";
 function App() {
   return (
     <div className="flex p-6">
-      <div className="w-full max-w-lg mx-auto bg-white p-4 rounded-md">
+      <div className="w-full max-w-lg bg-white p-4 rounded-md">
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />

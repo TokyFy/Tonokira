@@ -21,7 +21,6 @@ export async function GetArtist(id: string): Promise<IArtist> {
 }
 
 export async function GetPictures(id: string): Promise<IPicture> {
-    console.log(id)
 
     return {
         url : `/dummy/00${Number(id)}.jpg`

@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from "react";
-import Search from "../../components/Search/Search";
+import Search from "../../components/Search";
 import {useNavigate} from "react-router-dom";
-import Copyright from "../../components/Copyright/Copyright";
+import Copyright from "../../components/Copyright";
 
 
 interface OwnProps {

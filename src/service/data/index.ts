@@ -57,7 +57,7 @@ const musics = [
         AlbumArts : "/dummy/003.jpg",
         album : "plum blossom",
         Album: { id: "2", name: "plum blossom" },
-        Artists: [{ id: "2", name: "Men I Trust" }],
+        Artists: [{ id: "2", name: "mxmtoon" }],
         lyric: "[00:01.42]Mmm, woah, mm\n" +
             "[00:08.88]I walked into the room and I then I saw your face\n" +
             "[00:12.27]You looked me in the eye and I wanted to erase myself\n" +

@@ -1,9 +1,8 @@
 import React, {FunctionComponent, useEffect} from "react";
-import style from "./MusicCards.module.scss";
 import {useNavigate} from "react-router-dom";
-import {IMAGE_PROXY_URL} from "../../constant";
+import {IMAGE_PROXY_URL} from "../constant";
 import {useQuery} from "react-query";
-import {GetPictures} from "../../service";
+import {GetPictures} from "../service";
 
 interface OwnProps {
     image: string;
@@ -49,24 +48,24 @@ const MusicCards: FunctionComponent<Props> = (
     };
 
     return (
-        <div className={"group flex flex-row-reverse py-2 justify-between items-center cursor-pointer"}
+        <div className={"group flex flex-row-reverse py-3 justify-between items-center cursor-pointer"}
              onClick={() => cardClickHandler()}>
-            <div className={"w-16 aspect-square rounded overflow-hidden bg-neutral-300"}>
+            <div className={"w-10 aspect-square overflow-hidden bg-neutral-300 grayscale group-hover:grayscale-0 duration-300"}>
                 {isLoading ? null : (
                     <img src={`${IMAGE_PROXY_URL}${data?.url}`} alt=""/>
                 )}
             </div>
-            <p className={"flex flex-col"}>
+            <p className={"flex flex-col text-sm"}>
                 <span
                     className={"first-letter:uppercase font-bold text-neutral-600 group-hover:text-purple-400 duration-500"}>{`${title} - ${album}`}</span>
                 <span
-                    className={"text-neutral-400 "}
+                    className={"text-neutral-400 text-[12px]"}
                     onClick={(event) => {
                         event.stopPropagation();
                         ArtistNameClickHandler();
                     }}
                 >
-                  By <strong className="group-hover:underline">{artist}</strong>
+                  <strong className="group-hover:underline first-letter:uppercase">{artist}</strong>
                 </span>
             </p>
         </div>
@@ -76,10 +75,10 @@ const MusicCards: FunctionComponent<Props> = (
 export const MusicCardSkeleton: FunctionComponent = () => {
     return (
         <div className={"group flex flex-row-reverse py-2 justify-between items-center cursor-pointer"}>
-            <div className={"w-16 rounded overflow-hidden bg-neutral-200 aspect-square"}></div>
+            <div className={"w-10 rounded overflow-hidden bg-neutral-200 aspect-square"}></div>
             <p className={"flex flex-col gap-[2px]"}>
                 <span
-                    className={"first-letter:uppercase font-bold text-neutral-600 group-hover:text-purple-400 duration-500 bg-neutral-200 h-3 w-28"}></span>
+                    className={"first-letter:uppercase first-letter:bg-neutral-900 font-bold text-neutral-600 group-hover:text-purple-400 duration-500 bg-neutral-200 h-3 w-28"}></span>
                 <span className="bg-neutral-200 h-3 w-24"></span>
             </p>
         </div>

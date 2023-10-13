@@ -1,11 +1,11 @@
 import React, {FunctionComponent, useEffect, useState} from "react";
-import MusicCards from "../../components/MusicCard/MusicCards";
-import {MusicCardSkeleton} from "../../components/MusicCard/MusicCards";
-import Search from "../../components/Search/Search";
+import MusicCards from "../../components/MusicCards";
+import {MusicCardSkeleton} from "../../components/MusicCards";
+import Search from "../../components/Search";
 
 import {useSearchParams} from "react-router-dom";
 import {searchSongs} from "../../service";
-import Error from "../../components/Error/Error";
+import Error from "../../components/Error";
 import {useQuery} from "react-query";
 
 interface OwnProps {
@@ -47,7 +47,7 @@ const Result: FunctionComponent<Props> = (props) => {
                 />
             </div>
 
-            <div className={"flex flex-col divide-y divide-dashed divide-neutral-300"}>
+            <div className={"flex flex-col divide-y divide-dashed divide-neutral-200"}>
                 {isLoading ? (
                     <>
                         <MusicCardSkeleton/>

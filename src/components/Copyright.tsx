@@ -12,10 +12,12 @@ const Copyright: FunctionComponent<Props> = (props) => {
                 /* Hello (~-~) , <br/>
                 /* Here you can search for your favorite song <br/>
                 /* Get the lyrics <br/>
-                /* <del>Get the mp3 [120kb] files </del><br/>
                 /* Enjoy <br/>
-                /* Made with {"<3"} by <a href={"toky.vercel.app"} target={"_blank"} className="font-bold group-hover:text-purple-500"> Toky</a><br/>
-                /* <a href={"toky.vercel.app"} target={"_blank"} className="font-bold group-hover:text-purple-500"> Github</a> <br/>
+                /* Made with {"<3"} by <a href={"toky.vercel.app"} target={"_blank"}
+                                          className="font-bold border-b border-transparent border-dashed group-hover:border-neutral-700"> Toky</a><br/>
+                /* <a href={"toky.vercel.app"} target={"_blank"}
+                      className="font-bold border-b border-transparent border-dashed group-hover:border-neutral-700"> Github</a>
+                <br/>
             </p>
         </div>
     );
