@@ -49,34 +49,36 @@ const Lyrics: FunctionComponent<Props> = (props) => {
     });
 
   return (
-    <div className={style.lyrics}>
-      <div className={style.lyricsHeader}>
-        <div className={style.albumCover}>
+    <div className={""}>
+      <div className={"flex flex-row-reverse justify-between items-center border-b border-dashed py-6 border-y-neutral-300"}>
+        <div className={"w-16"}>
           <img
-            src={`${IMAGE_PROXY_URL}/tr:w-400/${image}`}
+            src={`${IMAGE_PROXY_URL}${image}`}
             alt={"album cover"}
           />
         </div>
-        <p className={style.title}>{title}</p>
-        <p className={style.artist}>By {artist}</p>
+        <div>
+          <p className={"font-bold text-neutral-700"}>{title}</p>
+          <p className={"text-neutral-500"}>By {artist}</p>
+        </div>
       </div>
       {isLoading ? (
         <LyricsSkeleton />
       ) : (
         <>
-          <div className={style.lyricsContent}>
+          <div className={"py-8 text-gray-600 text-[16px] font-bold"}>
             {lyrics?.map((el, index) => (
-              <p className={style.lyricsParagraph} key={index}>
+              <p className={"py-2 hover:text-purple-500 text-center"} key={index}>
                 {el}
               </p>
             ))}
           </div>
-          <div className={style.btnWrapper}>
+          <div className={"flex justify-center py-4"}>
             <Btn
-              value={"Get Lyrics"}
-              onClick={() =>
-                downloadTxtFile(`${LyricsData?.lyric}`, title, artist)
-              }
+                value={"Download Lyrics"}
+                onClick={() =>
+                    downloadTxtFile(`${LyricsData?.lyric}`, title, artist)
+                }
             />
           </div>
         </>

@@ -11,7 +11,7 @@ const Artist: FunctionComponent = (props) => {
   const { id } = useParams();
 
   const { isLoading, isError, data, error, refetch } = useQuery(
-    ["search", id],
+    ["artist", id],
     ({}) => GetArtist(`${id}`),
     {
       staleTime: 5 * (60 * 1000),
@@ -19,29 +19,27 @@ const Artist: FunctionComponent = (props) => {
     }
   );
 
-  useEffect(() => {
-    if (data) {
-      console.log(data);
-    }
-  }, [data]);
-
   return (
     <>
       {isLoading ? (
         <ArtistSkeleton />
       ) : (
-        <div className={style.artist}>
-          <div className={style.ArtistHeader}>
-            <div className={style.albumCover}>
+        <div className={""}>
+          <div className={"flex flex-col items-center gap-2 my-6 bg-neutral-50 w-max mx-auto p-2 border border-neutral-200 rounded-md"}>
+            <div className={"w-24 aspect-square"}>
               <img
-                src={`${IMAGE_PROXY_URL}/tr:w-400/${data?.picUrl}`}
+                src={`${IMAGE_PROXY_URL}${data?.picUrl}`}
                 alt={"album cover"}
               />
             </div>
-            <p className={style.artistName}>{data?.name}</p>
+            <p className={"text-neutral-700 font-bold"}>{data?.name}</p>
           </div>
 
-          <div className={style.songs}>
+          <div className="font-bold text-neutral-500 underline">
+            Hot songs :
+          </div>
+
+          <div className={"divide-y divide-dashed"}>
             {data?.hotSong!.map((song, index) => (
               <MusicCards
                 image={`${song.AlbumArts}`}

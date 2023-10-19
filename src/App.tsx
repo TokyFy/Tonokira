@@ -9,8 +9,8 @@ import Artist from "./Page/Artist/Artist";
 
 function App() {
   return (
-    <Row>
-      <div className="App">
+    <div className="flex p-6">
+      <div className="w-full max-w-lg mx-auto bg-white p-4 rounded-md">
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -18,9 +18,8 @@ function App() {
           <Route path="lyrics/:id" element={<Lyrics />} />
           <Route path="artist/:id" element={<Artist />} />
         </Routes>
-        <Copyright />
       </div>
-    </Row>
+    </div>
   );
 }
 

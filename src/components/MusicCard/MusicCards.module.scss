@@ -60,7 +60,6 @@
   transition: all 1s ease;
   cursor: pointer;
   overflow: hidden;
-  //background-color: transparentize($light-secondary, .5);
   border: 3px solid $light-secondary;
   animation: 1s loading ease-in-out infinite alternate;
 

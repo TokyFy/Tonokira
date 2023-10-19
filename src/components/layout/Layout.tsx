@@ -8,7 +8,7 @@ interface OwnProps {
 type Props = OwnProps;
 
 const Row: FunctionComponent<Props> = ({ children }) => {
-  return <div className={style.row}>{children}</div>;
+  return <div className="max-w-md px-6">{children}</div>;
 };
 
 export { Row };
