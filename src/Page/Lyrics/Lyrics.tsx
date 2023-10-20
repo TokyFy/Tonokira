@@ -47,23 +47,23 @@ const Lyrics: FunctionComponent = () => {
     return (
         <div className={""}>
             <div
-                className={"flex flex-row-reverse justify-between items-end border-b border-dashed py-6 border-y-neutral-300"}>
-                <div className={"w-32 aspect-square bg-neutral-100"}>
+                className={"flex flex-row-reverse justify-between items-end border-b border-dashed py-6 border-y-neutral-300 dark:border-b-gray-600"}>
+                <div className={"w-24 aspect-square bg-neutral-100"}>
                     <img
                         src={`${IMAGE_PROXY_URL}${image}`}
                         alt={"album cover"}
                     />
                 </div>
                 <div>
-                    <p className={"font-bold text-neutral-700 text-3xl first-letter:uppercase"}>{title}</p>
-                    <p className={"text-neutral-500 text-lg first-letter:uppercase"}>{artist}</p>
+                    <p className={"font-bold text-neutral-700 text-xl first-letter:uppercase dark:text-gray-200"}>{title}</p>
+                    <p className={"text-neutral-500 first-letter:uppercase dark:text-gray-500"}>{artist}</p>
                 </div>
             </div>
             {isLoading ? (
                 <LyricsSkeleton/>
             ) : (
                 <>
-                    <div className={"py-6 text-neutral-600 text-sm font-bold"}>
+                    <div className={"py-6 text-neutral-600 text-sm font-bold dark:text-neutral-300"}>
                         {lyrics?.map((el, index) => (
                             <p className={"py-1 hover:text-purple-500"} key={index}>
                                 {el}

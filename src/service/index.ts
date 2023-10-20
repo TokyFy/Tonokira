@@ -1,2 +1,2 @@
-// export * from './NeteaseFinder';
-export * from './offlineFinder';
+export * from './NeteaseFinder';
+// export * from './offlineFinder';

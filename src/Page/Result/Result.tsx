@@ -47,7 +47,7 @@ const Result: FunctionComponent<Props> = (props) => {
                 />
             </div>
 
-            <div className={"flex flex-col divide-y divide-dashed divide-neutral-200"}>
+            <div className={"flex flex-col divide-y divide-dashed divide-neutral-200 dark:divide-gray-600"}>
                 {isLoading ? (
                     <>
                         <MusicCardSkeleton/>

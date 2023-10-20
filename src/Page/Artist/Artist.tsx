@@ -24,14 +24,14 @@ const Artist: FunctionComponent = (props) => {
         <ArtistSkeleton />
       ) : (
         <div className={""}>
-          <div className={"flex flex-col items-center gap-2 my-6 bg-neutral-50 w-max mx-auto p-2 border border-neutral-200 rounded-md"}>
-            <div className={"w-24 aspect-square"}>
+          <div className={"flex flex-col gap-2 my-6 w-max p-2 rounded-sm border border-neutral-400 border-dashed"}>
+            <div className={"w-32 aspect-square"}>
               <img
                 src={`${IMAGE_PROXY_URL}${data?.picUrl}`}
                 alt={"album cover"}
               />
             </div>
-            <p className={"text-neutral-700 font-bold"}>{data?.name}</p>
+            <p className={"text-neutral-900 font-bold first-letter:uppercase text-center dark:text-neutral-200"}>{data?.name}</p>
           </div>
 
           <div className="font-bold text-neutral-500 underline">

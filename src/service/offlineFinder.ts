@@ -8,8 +8,6 @@ export async function searchSongs(query: string): Promise<ISongs[]> {
 
 export async function GetArtist(id: string): Promise<IArtist> {
 
-    console.log(id)
-
     const music = offlineMusicData[Number(id)]
 
     return {
