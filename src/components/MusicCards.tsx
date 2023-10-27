@@ -5,7 +5,7 @@ import {useQuery} from "react-query";
 import {GetPictures} from "../service";
 
 interface OwnProps {
-    image: string;
+    image?: string;
     title: string;
     album: string;
     artist: string;
@@ -20,9 +20,17 @@ const MusicCards: FunctionComponent<Props> = (
     {image, title, artist, album, songId, ImageId, ArtistId}) => {
     const navigate = useNavigate();
 
-    const {isLoading, isError, data, error, refetch} = useQuery(
+    const {isLoading, isError, data, error, refetch} = useQuery<{url : string}>(
         ["Pictures", `${ImageId}${title}`],
-        ({}) => (!Boolean(image) ? GetPictures(`${ImageId}`) : {url: image}),
+        ({}) => {
+            if(image) return new Promise((resolve, reject)=>{
+                resolve({
+                    url : image
+                })
+            })
+
+            return GetPictures(`${ImageId}`)
+        },
         {
             staleTime: 5 * (60 * 1000),
             cacheTime: 2.5 * (60 * 1000),
@@ -30,8 +38,8 @@ const MusicCards: FunctionComponent<Props> = (
     );
 
     useEffect(() => {
-        console.log(ImageId)
-    }, [data]);
+        console.log(image, data?.url)
+    }, [isLoading]);
 
     const cardClickHandler = () => {
         navigate(`/lyrics/${songId}`, {
