@@ -18,6 +18,7 @@ const Artist: FunctionComponent = (props) => {
     }
   );
 
+
   return (
     <>
       {isLoading ? (
@@ -41,7 +42,7 @@ const Artist: FunctionComponent = (props) => {
           <div className={"divide-y divide-dashed"}>
             {data?.hotSong!.map((song, index) => (
               <MusicCards
-                image={`${song.AlbumArts}`}
+                image={song.AlbumArts}
                 title={song.title}
                 album={song.Album.name}
                 artist={song.Artists[0].name}

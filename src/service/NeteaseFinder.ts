@@ -32,8 +32,8 @@ interface IPictureResponse {
   };
 }
 
-const REST_END_POINT = String(import.meta.env.VITE_REST_END_POINT);
-// const REST_END_POINT = "http://localhost:8010/proxy";
+// const REST_END_POINT = String(import.meta.env.VITE_REST_END_POINT);
+const REST_END_POINT = "https://tonokira.vercel.app/api/rest";
 
 export async function searchSongs(query: string): Promise<ISongs[]> {
   const res = await axios.get<ISearchResponse>(
