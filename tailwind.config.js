@@ -8,7 +8,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'primary' : ['Edu' , 'system-ui'],
+        'primary' : ['favorit Pro' , 'system-ui'],
       }
     },
   },

@@ -25,8 +25,8 @@ const Artist: FunctionComponent = (props) => {
         <ArtistSkeleton />
       ) : (
         <div className={""}>
-          <div className={"flex flex-col gap-2 my-6 w-max p-2 rounded-sm border border-neutral-400 border-dashed"}>
-            <div className={"w-32 aspect-square"}>
+          <div className={"flex flex-col gap-1 my-6 w-max p-1 rounded-sm border border-neutral-400 border-dashed items-center"}>
+            <div className={"w-20 aspect-square"}>
               <img
                 src={`${IMAGE_PROXY_URL}${data?.picUrl}`}
                 alt={"album cover"}
@@ -36,10 +36,10 @@ const Artist: FunctionComponent = (props) => {
           </div>
 
           <div className="font-bold text-neutral-500 underline">
-            Hot songs :
+            Popular songs :
           </div>
 
-          <div className={"divide-y divide-dashed"}>
+          <div className={"py-2"}>
             {data?.hotSong!.map((song, index) => (
               <MusicCards
                 image={song.AlbumArts}

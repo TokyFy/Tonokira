@@ -6,11 +6,12 @@ import LyricsSkeleton from "./LyricsSkeleton";
 import Btn from "../../components/Btn";
 import {IMAGE_PROXY_URL} from "../../constant";
 import {Download} from "lucide-react"
+import MusicCards from "../../components/MusicCards";
 
 const Lyrics: FunctionComponent = () => {
     const {id} = useParams();
 
-    const {title, artist, image} = useLocation().state;
+    const {title, artist, image, album, ArtistId} = useLocation().state;
 
     const {
         isLoading,
@@ -46,33 +47,28 @@ const Lyrics: FunctionComponent = () => {
 
     return (
         <div className={""}>
-            <div
-                className={"flex flex-row-reverse justify-between items-end border-b border-dashed py-6 border-y-neutral-300 dark:border-b-gray-600"}>
-                <div className={"w-24 aspect-square bg-neutral-100"}>
-                    <img
-                        src={`${IMAGE_PROXY_URL}${image}`}
-                        alt={"album cover"}
-                    />
-                </div>
-                <div>
-                    <p className={"font-bold text-neutral-700 text-xl first-letter:uppercase dark:text-gray-200"}>{title}</p>
-                    <p className={"text-neutral-500 first-letter:uppercase dark:text-gray-500"}>{artist}</p>
-                </div>
+            <div className="py-4">
+                <MusicCards image={image} title={title} album={album} artist={artist} songId={String(id)}
+                            ArtistId={ArtistId}/>
             </div>
             {isLoading ? (
                 <LyricsSkeleton/>
             ) : (
                 <>
-                    <div className={"py-6 text-neutral-600 text-sm font-bold dark:text-neutral-300"}>
-                        {lyrics?.map((el, index) => (
-                            <p className={"py-1 hover:text-purple-500"} key={index}>
-                                {el}
-                            </p>
-                        ))}
+                    <div className={"text-neutral-600 text-xs font-bold dark:text-neutral-300"}>
+                        {lyrics?.map((el, index) => {
+                            return <>
+                                {index !== 0 && index % 4 === 0 && <p className={"h-4"}></p>}
+                                <p className={"py-1 hover:text-purple-500"} key={index}>
+                                    {el}
+                                </p>
+                            </>
+                        })}
                     </div>
                     <div className={"flex py-4"}>
                         <Btn onClick={() => downloadTxtFile(`${LyricsData?.lyric}`, title, artist)}>
-                            <p className={"flex gap-2 items-center text-sm"}><Download size={14}/> <span>Download Lyrics</span></p>
+                            <p className={"flex gap-2 items-center text-xs"}><Download size={14}/>
+                                <span>Download Lyrics</span></p>
                         </Btn>
                     </div>
                 </>

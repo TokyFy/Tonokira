@@ -47,6 +47,8 @@ const MusicCards: FunctionComponent<Props> = (
                 title: title,
                 artist: artist,
                 image: data?.url,
+                album : album,
+                ArtistId : ArtistId
             },
         });
     };
@@ -56,17 +58,17 @@ const MusicCards: FunctionComponent<Props> = (
     };
 
     return (
-        <div className={"group flex flex-row-reverse py-3 justify-between items-center cursor-pointer"}
+        <div className={"group flex p-1 items-center cursor-pointer gap-4  my-1 border-2 rounded hover:bg-neutral-50 dark:hover:bg-gray-900 dark:border-gray-500"}
              onClick={() => cardClickHandler()}>
             <div
-                className={"w-10 aspect-square overflow-hidden bg-neutral-300 duration-300"}>
+                className={"w-6 aspect-square overflow-hidden bg-neutral-300 duration-300 rounded-sm"}>
                 {isLoading ? null : (
                     <img src={`${IMAGE_PROXY_URL}${data?.url}`} alt=""/>
                 )}
             </div>
-            <p className={"flex flex-col text-sm"}>
+            <p className={"flex text-sm grow justify-between"}>
                 <span
-                    className={"first-letter:uppercase font-bold text-neutral-600 group-hover:text-purple-400 duration-500 dark:text-gray-300"}>{`${title} - ${album}`}</span>
+                    className={"first-letter:uppercase font-bold text-neutral-600 group-hover:text-neutral-800 dark:group-hover:text-gray-200 duration-500 dark:text-gray-300"}>{`${title} - ${album}`}</span>
                 <span
                     className={"text-neutral-400 text-[12px] dark:text-gray-500"}
                     onClick={(event) => {
@@ -83,12 +85,19 @@ const MusicCards: FunctionComponent<Props> = (
 
 export const MusicCardSkeleton: FunctionComponent = () => {
     return (
-        <div className={"group flex flex-row-reverse py-2 justify-between items-center cursor-pointer"}>
-            <div className={"w-10 rounded overflow-hidden bg-neutral-200 aspect-square dark:bg-gray-700"}></div>
-            <p className={"flex flex-col gap-[2px]"}>
+        <div className={"group flex p-1 items-center cursor-pointer gap-4  my-1 border rounded hover:bg-neutral-50"}>
+            <div
+                className={"w-6 aspect-square overflow-hidden bg-neutral-300 duration-300 rounded-sm grayscale group-hover:grayscale-0"}>
+
+            </div>
+            <p className={"flex text-sm grow justify-between items-center"}>
                 <span
-                    className={"first-letter:uppercase first-letter:bg-neutral-900 font-bold text-neutral-600 group-hover:text-purple-400 duration-500 bg-neutral-200 h-3 w-28 dark:bg-gray-700"}></span>
-                <span className="bg-neutral-200 h-3 w-24 dark:bg-gray-700"></span>
+                    className={"first-letter:uppercase font-bold bg-neutral-200 w-32 h-3 group-hover:text-purple-400 duration-500 dark:text-gray-300"}></span>
+                <span
+                    className={"text-neutral-400 text-[12px] dark:text-gray-500 bg-neutral-200 w-32 h-3"}
+                >
+                  <strong className="group-hover:underline first-letter:uppercase"></strong>
+                </span>
             </p>
         </div>
     );

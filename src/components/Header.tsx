@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {Asterisk, Moon, Sun} from "lucide-react";
+import {Sparkles , Paintbrush2 , Circle , CircleDashed , CircleSlashed} from "lucide-react";
 
 const Header: FunctionComponent = () => {
 
@@ -14,12 +14,12 @@ const Header: FunctionComponent = () => {
     const navigate = useNavigate();
 
     return (
-        <div className={"py-2 flex items-center justify-between border-bs border-dashed border-neutral-400"}>
-            <div className={"cursor-pointer hover:rotate-90 transition-transform duration-500"} onClick={() => navigate("/")}>
-                <Asterisk size={32}/>
+        <div className={"flex items-center justify-between border-bs border-dashed border-neutral-400"}>
+            <div className={"cursor-pointer hover:rotate-90 transition-transform duration-500 text-neutral-700 dark:text-neutral-300"} onClick={() => navigate("/")}>
+                <Sparkles size={20}/>
             </div>
-            <div className={"cursor-pointer opacity-50"} onClick={() => switchTheme()}>
-                {dark ? <Moon size={16}/> : <Sun size={16}/>}
+            <div className={"cursor-pointer text-neutral-700 dark:text-neutral-300"} onClick={() => switchTheme()}>
+                {dark ? <CircleDashed absoluteStrokeWidth size={18}/> : <Circle absoluteStrokeWidth size={18}/>}
             </div>
         </div>
     );

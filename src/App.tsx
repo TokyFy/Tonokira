@@ -8,7 +8,7 @@ import Artist from "./Page/Artist/Artist";
 function App() {
   return (
     <div className="flex p-3">
-      <div className="w-full max-w-lg p-4 rounded-md border border-dashed border-neutral-400 mx-auto">
+      <div className="w-full max-w-lg rounded-md border-neutral-400">
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />

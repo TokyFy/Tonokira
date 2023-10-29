@@ -1,5 +1,5 @@
 import React, {FunctionComponent, useEffect, useState} from "react";
-import {Sparkles} from "lucide-react"
+import {Sparkles, CornerRightDown, Paintbrush, CornerDownRight, CornerDownLeft} from "lucide-react"
 
 interface OwnProps {
     onClick: (str: string) => void;
@@ -25,23 +25,23 @@ const Search: FunctionComponent<Props> = ({ onClick, InputValue, placeHolder,}) 
     };
 
     return (
-        <div className={"flex border border-neutral-300 h-10 items-center px-2 rounded hover:border-neutral-400 dark:border-neutral-100"}>
+        <div className={"flex border-b-2 border-neutral-200 dark:border-gray-600 h-10 items-center px-2  hover:border-neutral-800 dark:hover:border-gray-400"}>
             <input
-                className={"focus:outline-0 grow h-full text-md font-primary text-neutral-700 font-bold placeholder:text-neutral-400 bg-transparent dark:text-gray-200 dark:placeholder:text-gray-600"}
+                className={"focus:outline-0 grow h-full text-md font-primary text-neutral-700 placeholder:text-neutral-400 bg-transparent dark:text-gray-200 dark:placeholder:text-gray-600"}
                 type="text"
                 name="search"
                 spellCheck={false}
                 autoComplete={"off"}
-                placeholder={placeHolder || "Your best song ..."}
+                placeholder={placeHolder || "Type your best song here..."}
                 onChange={(el) => setValue(el.target.value)}
                 onKeyDown={handleKeyDown}
                 value={value}
             ></input>
             <div
-                className="cursor-pointer text-neutral-500 hover:text-neutral-800 dark:text-neutral-200"
+                className="cursor-pointer text-neutral-700 hover:text-neutral-800 dark:text-neutral-200"
                 onClick={() => onClick(value)}
             >
-                <Sparkles size={18}/>
+                <CornerDownLeft absoluteStrokeWidth size={13}/>
             </div>
         </div>
     );
