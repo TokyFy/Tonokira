@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {IMAGE_PROXY_URL} from "../constant";
 import {useQuery} from "react-query";
 import {GetPictures} from "../service";
+import {ArrowUp, ArrowUpRight} from "lucide-react";
 
 interface OwnProps {
     image?: string;
@@ -37,9 +38,6 @@ const MusicCards: FunctionComponent<Props> = (
         }
     );
 
-    useEffect(() => {
-        console.log(image, data?.url)
-    }, [isLoading]);
 
     const cardClickHandler = () => {
         navigate(`/lyrics/${songId}`, {
@@ -59,15 +57,16 @@ const MusicCards: FunctionComponent<Props> = (
 
     return (
         <div
-            className={"group flex flex-row-reverse p-1 items-center cursor-pointer gap-3  my-1 border border-neutral-200 rounded hover:bg-neutral-50 dark:hover:bg-gray-900 dark:border-gray-500"}
+            className={"group flex flex-row-reverse items-center cursor-pointer gap-1  my-1 p-1 border border-stone-200 rounded-sm hover:bg-neutral-100 dark:hover:bg-gray-900 dark:border-gray-500"}
             onClick={() => cardClickHandler()}>
             <div
-                className={"w-6 aspect-square overflow-hidden bg-neutral-300 duration-300 rounded-sm"}>
-                {isLoading ? null : (
-                    <img src={`${IMAGE_PROXY_URL}${data?.url}`} alt=""/>
-                )}
+                className={"aspect-square overflow-hidden duration-300 transition-transform rounded-sm flex justify-center items-center text-neutral-400 group-hover:text-inherit group-hover:rotate-45"}>
+                {/*{isLoading ? null : (*/}
+                {/*    <img src={`${IMAGE_PROXY_URL}${data?.url}`} alt=""/>*/}
+                {/*)}*/}
+                <ArrowUpRight size={13}/>
             </div>
-            <div className={"flex text-xs grow justify-between"}>
+            <div className={"flex text-xs grow justify-between items-center"}>
                 <p
                     className={"first-letter:uppercase font-bold text-neutral-600 group-hover:text-neutral-800 dark:group-hover:text-gray-200 duration-500 dark:text-gray-300"}>
                     <span
@@ -77,14 +76,14 @@ const MusicCards: FunctionComponent<Props> = (
                             ArtistNameClickHandler();
                         }}
                     >
-                        {artist}{" "}
+                        {artist}
                     </span>
-                    — {title}
+                    <span className="inline-block px-1">—</span>{title}
                 </p>
                 <p
                     className={"text-neutral-400  dark:text-gray-500"}
                 >
-                    <strong className="group-hover:underline first-letter:uppercase">{album}</strong>
+                    <strong>{album}</strong>
                 </p>
             </div>
         </div>

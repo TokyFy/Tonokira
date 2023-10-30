@@ -14,12 +14,12 @@ const Header: FunctionComponent = () => {
     const navigate = useNavigate();
 
     return (
-        <div className={"flex items-center justify-between border rounded bg-neutral-50 dark:bg-gray-900 dark:border-gray-600 p-1"}>
-            <div className={"cursor-pointer hover:rotate-90 transition-transform duration-500 text-neutral-700 dark:text-neutral-300"} onClick={() => navigate("/")}>
-                <Sparkles size={18}/>
+        <div className={"flex items-center justify-between dark:border-gray-600 p-1"}>
+            <div className={"text-xs font-bold cursor-pointer hover:underline transition-transform duration-500 text-neutral-700 dark:text-neutral-300"} onClick={() => navigate("/")}>
+               # Lirikisa
             </div>
             <div className={"cursor-pointer text-neutral-700 dark:text-neutral-300"} onClick={() => switchTheme()}>
-                {dark ? <CircleDashed absoluteStrokeWidth size={16}/> : <Circle absoluteStrokeWidth size={16}/>}
+                {dark ? <CircleDashed absoluteStrokeWidth size={13}/> : <Circle absoluteStrokeWidth size={13}/>}
             </div>
         </div>
     );

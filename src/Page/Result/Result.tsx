@@ -26,11 +26,6 @@ const Result: FunctionComponent<Props> = (props) => {
         }
     );
 
-    useEffect(() => {
-        console.log(error)
-    }, [error]);
-
-
     const clickHandler = async (str: string) => {
         if (!(str.trim() === "")) {
             setSearchParams({q: str});

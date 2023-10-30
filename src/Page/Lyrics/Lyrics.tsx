@@ -40,9 +40,7 @@ const Lyrics: FunctionComponent = () => {
         .split("\n")
         .filter((el) => !(el.includes("[00:00.000]") || el.includes("[00:01.000]")))
         .map((el) => {
-            return el
-                .replace(/\[\d{2,3}:\d{2,3}\.\d{2,3}]/, "")
-                .replace(/[^a-zA-Z ]/g, "");
+            return [el.match(/\[\d{2,3}:\d{2,3}\.\d{2,3}]/) , el.replace(/\[\d{2,3}:\d{2,3}\.\d{2,3}]/, "")]
         });
 
     return (
@@ -55,20 +53,18 @@ const Lyrics: FunctionComponent = () => {
                 <LyricsSkeleton/>
             ) : (
                 <>
-                    <div className={"text-neutral-600 text-xs font-bold dark:text-neutral-300"}>
+                    <div className={"text-neutral-900 text-sm dark:text-neutral-300 "}>
                         {lyrics?.map((el, index) => {
-                            return <>
-                                {index !== 0 && index % 4 === 0 && <p key={"p" + index} className={"h-4"}></p>}
-                                <p className={"py-1 hover:text-purple-500"} key={index}>
-                                    {el}
-                                </p>
-                            </>
+                            return <p className={"group py-1 hover:text-purple-500"} key={index}>
+                                <span className="text-xs font-bold text-neutral-300 group-hover:text-neutral-800 pr-3 font-mono dark:text-gray-700">{el[0]}</span>
+                                <span className="italic w-min">{el[1]}</span>
+                                {index !== 0 && index % 4 === 0 && <span key={`p=${index}`} className={"h-4 block"}></span>}
+                            </p>
                         })}
                     </div>
-                    <div className={"flex py-4"}>
+                    <div className={"flex py-2"}>
                         <Btn onClick={() => downloadTxtFile(`${LyricsData?.lyric}`, title, artist)}>
-                            <p className={"flex gap-2 items-center text-xs"}><Download size={14}/>
-                                <span>Download Lyrics</span></p>
+                            <span>Download Lyrics</span>
                         </Btn>
                     </div>
                 </>
