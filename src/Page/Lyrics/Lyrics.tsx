@@ -5,7 +5,7 @@ import {useQuery} from "react-query";
 import LyricsSkeleton from "./LyricsSkeleton";
 import Btn from "../../components/Btn";
 import {IMAGE_PROXY_URL} from "../../constant";
-import {Download} from "lucide-react"
+import {Download, Printer, DownloadCloud, ArrowDownFromLine, ArrowDown} from "lucide-react"
 import MusicCards from "../../components/MusicCards";
 
 const Lyrics: FunctionComponent = () => {
@@ -18,8 +18,7 @@ const Lyrics: FunctionComponent = () => {
         isError,
         data: LyricsData,
         error,
-        refetch,
-    } = useQuery(["search", id], ({}) => GetLyrics(`${id}`), {
+    } = useQuery(["Lyrics", id], ({}) => GetLyrics(`${id}`), {
         staleTime: 5 * (60 * 1000),
         cacheTime: 2.5 * (60 * 1000),
     });
@@ -53,19 +52,21 @@ const Lyrics: FunctionComponent = () => {
                 <LyricsSkeleton/>
             ) : (
                 <>
-                    <div className={"text-neutral-900 text-sm dark:text-neutral-300 "}>
+                    <div className={"relative text-neutral-900 text-sm dark:text-neutral-300 "}>
                         {lyrics?.map((el, index) => {
-                            return <p className={"group py-1 hover:text-purple-500"} key={index}>
-                                <span className="text-xs font-bold text-neutral-300 group-hover:text-neutral-800 pr-3 font-mono dark:text-gray-700">{el[0]}</span>
+                            return <p className={"group/lyrics py-1 hover:text-purple-500 w-max"} key={index}>
+                                <span className="text-xs font-bold text-neutral-300 group-hover/lyrics:text-neutral-800 pr-3 font-mono dark:text-gray-700">{el[0]}</span>
                                 <span className="italic w-min">{el[1]}</span>
                                 {index !== 0 && index % 4 === 0 && <span key={`p=${index}`} className={"h-4 block"}></span>}
                             </p>
                         })}
-                    </div>
-                    <div className={"flex py-2"}>
-                        <Btn onClick={() => downloadTxtFile(`${LyricsData?.lyric}`, title, artist)}>
-                            <span>Download Lyrics</span>
-                        </Btn>
+
+                        <div
+                            className={"absolute flex w-5 aspect-square border-2 border-neutral-200 hover:bg-neutral-900 hover:border-neutral-900 hover:text-neutral-200 text-neutral-400 right-0 top-1 justify-center items-center rounded-full duration-200 cursor-pointer"}
+                            onClick={() => downloadTxtFile(`${LyricsData?.lyric}`, title, artist)}
+                        >
+                            <ArrowDown absoluteStrokeWidth size={12}/>
+                        </div>
                     </div>
                 </>
             )}

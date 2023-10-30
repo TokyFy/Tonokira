@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {Sparkles , Paintbrush2 , Circle , CircleDashed , CircleSlashed} from "lucide-react";
+import {Sparkles, Paintbrush2, Circle, CircleDashed, CircleSlashed, CircleOff, CircleDot} from "lucide-react";
 
 const Header: FunctionComponent = () => {
 
@@ -19,7 +19,7 @@ const Header: FunctionComponent = () => {
                # Lirikisa
             </div>
             <div className={"cursor-pointer text-neutral-700 dark:text-neutral-300"} onClick={() => switchTheme()}>
-                {dark ? <CircleDashed absoluteStrokeWidth size={13}/> : <Circle absoluteStrokeWidth size={13}/>}
+                {dark ? <CircleDot absoluteStrokeWidth size={13}/> : <Circle absoluteStrokeWidth size={13}/>}
             </div>
         </div>
     );

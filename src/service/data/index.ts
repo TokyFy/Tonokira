@@ -110,7 +110,7 @@ const musics = [
             "[02:49.71]Bah duh duh duh dum\n" +
             "[02:52.48]That's okay, we're just a little cliché\n" +
             "[02:56.69]We're a little cliché\n" +
-            "[02:59.61]]But that's okay!"
+            "[02:59.61]But that's okay!"
     } ,
     {
         title : "Better",

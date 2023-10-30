@@ -21,8 +21,8 @@ const MusicCards: FunctionComponent<Props> = (
     {image, title, artist, album, songId, ImageId, ArtistId}) => {
     const navigate = useNavigate();
 
-    const {isLoading, isError, data, error, refetch} = useQuery<{ url: string }>(
-        ["Pictures", `${ImageId}${title}`],
+    const {isLoading, isError, data, error} = useQuery<{ url: string }>(
+        ["Pictures", `${songId || ImageId}`],
         ({}) => {
             if (image) return new Promise((resolve, reject) => {
                 resolve({
@@ -64,7 +64,7 @@ const MusicCards: FunctionComponent<Props> = (
                 {/*{isLoading ? null : (*/}
                 {/*    <img src={`${IMAGE_PROXY_URL}${data?.url}`} alt=""/>*/}
                 {/*)}*/}
-                <ArrowUpRight size={13}/>
+                <ArrowUpRight size={14}/>
             </div>
             <div className={"flex text-xs grow justify-between items-center"}>
                 <p
