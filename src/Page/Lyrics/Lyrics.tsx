@@ -58,7 +58,7 @@ const Lyrics: FunctionComponent = () => {
                     <div className={"text-neutral-600 text-xs font-bold dark:text-neutral-300"}>
                         {lyrics?.map((el, index) => {
                             return <>
-                                {index !== 0 && index % 4 === 0 && <p className={"h-4"}></p>}
+                                {index !== 0 && index % 4 === 0 && <p key={"p" + index} className={"h-4"}></p>}
                                 <p className={"py-1 hover:text-purple-500"} key={index}>
                                     {el}
                                 </p>

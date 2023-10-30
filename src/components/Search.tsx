@@ -25,7 +25,7 @@ const Search: FunctionComponent<Props> = ({ onClick, InputValue, placeHolder,}) 
     };
 
     return (
-        <div className={"flex border-b-2 border-neutral-200 dark:border-gray-600 h-10 items-center px-2  hover:border-neutral-800 dark:hover:border-gray-400"}>
+        <div className={"group flex border-b border-neutral-200 dark:border-gray-600 h-10 items-center px-2  hover:border-neutral-800 dark:hover:border-gray-400"}>
             <input
                 className={"focus:outline-0 grow h-full text-md font-primary text-neutral-700 placeholder:text-neutral-400 bg-transparent dark:text-gray-200 dark:placeholder:text-gray-600"}
                 type="text"
@@ -38,7 +38,7 @@ const Search: FunctionComponent<Props> = ({ onClick, InputValue, placeHolder,}) 
                 value={value}
             ></input>
             <div
-                className="cursor-pointer text-neutral-700 hover:text-neutral-800 dark:text-neutral-200"
+                className="cursor-pointer text-neutral-400 hover:text-neutral-800 dark:text-neutral-200 group-hover:text-neutral-800"
                 onClick={() => onClick(value)}
             >
                 <CornerDownLeft absoluteStrokeWidth size={13}/>
