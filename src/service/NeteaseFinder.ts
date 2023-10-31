@@ -40,7 +40,7 @@ export async function searchSongs(query: string): Promise<ISongs[]> {
     `${REST_END_POINT}/search/${query}`
   );
 
-  return res.data.data.Music.splice(0, 4);
+  return res.data.data.Music;
 }
 
 // async function song(id: string): Promise<ISongs> {}
