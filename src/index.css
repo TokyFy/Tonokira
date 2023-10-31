@@ -35,7 +35,7 @@
 @font-face {
   font-family: "favorit";
   font-weight: 700;
-  src: url("/fonts/FavoritPro-Bold.woff.woff");
+  src: url("/fonts/FavoritPro-Bold.woff");
 }
 
 body::-webkit-scrollbar {
