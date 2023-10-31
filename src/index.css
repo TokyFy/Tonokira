@@ -21,8 +21,21 @@
 
 
 @font-face {
-  font-family: "Edu";
-  src: url("/fonts/Edu.woff");
+  font-family: "favorit";
+  font-weight: 400;
+  src: url("/fonts/FavoritPro-Regular.woff");
+}
+
+@font-face {
+  font-family: "favorit";
+  font-weight: 500;
+  src: url("/fonts/FavoritPro-Medium.woff");
+}
+
+@font-face {
+  font-family: "favorit";
+  font-weight: 700;
+  src: url("/fonts/FavoritPro-Bold.woff.woff");
 }
 
 body::-webkit-scrollbar {
