@@ -97,7 +97,7 @@ const Lyrics: FunctionComponent = () => {
                 {lyrics?.map((el, index) => {
                   return (
                     <div key={index} className="group flex items-start gap-4 py-1 hover:bg-gray-800/30 rounded px-2 transition-colors">
-                      <p className="flex items-center">
+                      <p className="flex justify-center items-center">
                          <span className="text-xs text-gray-500 font-mono mt-1 w-16 flex-shrink-0">
                         {el[0] ? el[0][0].replace(/[\[\]]/g, '') : ''}
                       </span>
