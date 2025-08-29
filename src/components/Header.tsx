@@ -7,6 +7,10 @@ const Header: FunctionComponent = () => {
 
   return (
     <header className="sticky top-0 z-20 bg-black/80 backdrop-blur-md">
+      <div className="flex items-center justify-between p-4">
+          Home
+        </div>
+      </div>
     </header>
   );
 };
