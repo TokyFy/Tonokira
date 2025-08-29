@@ -51,21 +51,6 @@ const Artist: FunctionComponent = (props) => {
             </div>
           </div>
 
-          {/* Controls */}
-          <div className="px-6 py-6 bg-gradient-to-b from-gray-900/50 to-black">
-            <div className="flex items-center gap-6">
-              <button className="w-14 h-14 bg-green-500 hover:bg-green-400 rounded-full flex items-center justify-center transition-all hover:scale-105">
-                <Play size={20} className="text-black ml-1" fill="black" />
-              </button>
-              <button className="w-8 h-8 flex items-center justify-center hover:bg-gray-800 rounded-full transition-colors">
-                <UserPlus size={20} className="text-gray-400 hover:text-white" />
-              </button>
-              <button className="w-8 h-8 flex items-center justify-center hover:bg-gray-800 rounded-full transition-colors">
-                <MoreHorizontal size={20} className="text-gray-400 hover:text-white" />
-              </button>
-            </div>
-          </div>
-
           {/* Popular Songs */}
           <div className="px-6 pb-6">
             <h2 className="text-xl font-bold text-white mb-4">Popular</h2>
