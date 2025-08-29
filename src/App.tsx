@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="bg-black min-h-screen flex">
       {/* Main Content */}
-      <div className="flex-1 ml-0 md:mx-60">
+      <div className="flex-1">
         <div className="bg-gradient-to-b from-gray-800/20 to-black min-h-screen">
           <Header />
           <main className="pb-6">
