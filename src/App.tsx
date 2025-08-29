@@ -13,7 +13,7 @@ function App() {
       <div className="flex-1 ml-0 md:ml-60">
         <div className="bg-gradient-to-b from-gray-800/20 to-black min-h-screen">
           <Header />
-          <main className="px-6 pb-6">
+          <main className="pb-6">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="search" element={<Result />} />
