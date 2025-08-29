@@ -23,13 +23,13 @@ const Search: FunctionComponent<Props> = ({ onClick, InputValue, placeHolder }) 
   };
 
   return (
-    <div className="relative max-w-md">
+    <div className="relative flex">
       <SearchIcon 
         size={16} 
         className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
       />
       <input
-        className="spotify-search pl-10"
+        className="spotify-search w-full pl-10"
         type="text"
         name="search"
         spellCheck={false}

@@ -23,16 +23,6 @@ const Header: FunctionComponent = () => {
             <ChevronRight size={18} className="text-white" />
           </button>
         </div>
-
-        {/* User profile */}
-        <div className="flex items-center gap-4">
-          <button className="spotify-btn-secondary text-sm">
-            Upgrade
-          </button>
-          <button className="w-8 h-8 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center transition-colors">
-            <User size={16} className="text-white" />
-          </button>
-        </div>
       </div>
     </header>
   );
