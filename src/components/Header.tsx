@@ -1,39 +1,41 @@
-import React, {FunctionComponent, useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {Music, Sun, Moon} from "lucide-react";
+import React, { FunctionComponent } from "react";
+import { useNavigate } from "react-router-dom";
+import { ChevronLeft, ChevronRight, User } from "lucide-react";
 
 const Header: FunctionComponent = () => {
+  const navigate = useNavigate();
 
-    const [dark, setDark] = useState(false);
-
-    function switchTheme() {
-        document.documentElement.classList.toggle("dark");
-        setDark(!dark)
-    }
-
-    const navigate = useNavigate();
-
-    return (
-        <div className="flex items-center justify-between p-6 mb-6">
-            <div 
-                className="flex items-center gap-3 cursor-pointer group" 
-                onClick={() => navigate("/")}
-            >
-                <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Music size={16} className="text-black" />
-                </div>
-                <h1 className="text-2xl font-bold text-white group-hover:text-green-400 transition-colors">
-                    Lirikisa
-                </h1>
-            </div>
-            <button 
-                className="p-2 rounded-full bg-gray-700/50 hover:bg-gray-600/50 text-gray-300 hover:text-white transition-all"
-                onClick={() => switchTheme()}
-            >
-                {dark ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
+  return (
+    <header className="sticky top-0 z-20 bg-black/80 backdrop-blur-md">
+      <div className="flex items-center justify-between p-4">
+        {/* Navigation arrows */}
+        <div className="flex items-center gap-2">
+          <button 
+            onClick={() => window.history.back()}
+            className="w-8 h-8 bg-black/70 hover:bg-black rounded-full flex items-center justify-center transition-colors"
+          >
+            <ChevronLeft size={18} className="text-white" />
+          </button>
+          <button 
+            onClick={() => window.history.forward()}
+            className="w-8 h-8 bg-black/70 hover:bg-black rounded-full flex items-center justify-center transition-colors"
+          >
+            <ChevronRight size={18} className="text-white" />
+          </button>
         </div>
-    );
+
+        {/* User profile */}
+        <div className="flex items-center gap-4">
+          <button className="spotify-btn-secondary text-sm">
+            Upgrade
+          </button>
+          <button className="w-8 h-8 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center transition-colors">
+            <User size={16} className="text-white" />
+          </button>
+        </div>
+      </div>
+    </header>
+  );
 };
 
 export default Header;

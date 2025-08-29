@@ -1,4 +1,5 @@
 import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Page/Home/Home";
 import Result from "./Page/Result/Result";
@@ -7,16 +8,22 @@ import Artist from "./Page/Artist/Artist";
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
-      <div className="max-w-4xl mx-auto px-4 py-6">
-        <Header />
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700/50 overflow-hidden">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="search" element={<Result />} />
-            <Route path="lyrics/:id" element={<Lyrics />} />
-            <Route path="artist/:id" element={<Artist />} />
-          </Routes>
+    <div className="bg-black min-h-screen flex">
+      {/* Sidebar */}
+      <Sidebar />
+      
+      {/* Main Content */}
+      <div className="flex-1 ml-0 md:ml-60">
+        <div className="bg-gradient-to-b from-gray-800/20 to-black min-h-screen">
+          <Header />
+          <main className="px-6 pb-6">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="search" element={<Result />} />
+              <Route path="lyrics/:id" element={<Lyrics />} />
+              <Route path="artist/:id" element={<Artist />} />
+            </Routes>
+          </main>
         </div>
       </div>
     </div>

@@ -1,11 +1,11 @@
-import React, { FunctionComponent, useEffect } from "react";
+import React, { FunctionComponent } from "react";
 import { IMAGE_PROXY_URL } from "../../constant";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { GetArtist } from "../../service";
 import MusicCards from "../../components/MusicCards";
 import ArtistSkeleton from "./ArtistSkeleton";
-import {User, Music} from "lucide-react";
+import { User, Play, MoreHorizontal, UserPlus } from "lucide-react";
 
 const Artist: FunctionComponent = (props) => {
   const { id } = useParams();
@@ -19,58 +19,76 @@ const Artist: FunctionComponent = (props) => {
     }
   );
 
-
   return (
-    <div className="p-8">
+    <div>
       {isLoading ? (
         <ArtistSkeleton />
       ) : (
-        <div>
-          <div className="flex items-center gap-6 mb-8">
-            <div className="w-32 h-32 bg-gray-700 rounded-full overflow-hidden flex items-center justify-center">
-              {data?.picUrl ? (
-                <img
-                  className="w-full h-full object-cover"
-                  src={`${IMAGE_PROXY_URL}${data.picUrl}`}
-                  alt={data.name}
-                />
-              ) : (
-                <User size={48} className="text-gray-400" />
-              )}
-            </div>
-            <div>
-              <p className="text-sm text-gray-400 font-medium mb-2">ARTIST</p>
-              <h1 className="text-4xl font-bold text-white mb-4">{data?.name}</h1>
-              <div className="flex items-center gap-4 text-gray-400">
-                <span>{data?.hotSong?.length || 0} popular songs</span>
+        <>
+          {/* Artist Header */}
+          <div className="relative">
+            <div className="bg-gradient-to-b from-gray-600 to-gray-900 px-6 pt-16 pb-6">
+              <div className="flex items-end gap-6">
+                <div className="w-56 h-56 bg-gray-700 rounded-full overflow-hidden flex items-center justify-center shadow-2xl">
+                  {data?.picUrl ? (
+                    <img
+                      className="w-full h-full object-cover"
+                      src={`${IMAGE_PROXY_URL}${data.picUrl}`}
+                      alt={data.name}
+                    />
+                  ) : (
+                    <User size={80} className="text-gray-400" />
+                  )}
+                </div>
+                <div className="pb-6">
+                  <p className="text-sm font-bold text-white mb-2">Artist</p>
+                  <h1 className="text-6xl font-black text-white mb-6">{data?.name}</h1>
+                  <p className="text-gray-300">
+                    {data?.hotSong?.length || 0} popular songs
+                  </p>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="mb-6">
-            <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-              <Music size={20} className="text-green-400" />
-              Popular Songs
-            </h2>
+          {/* Controls */}
+          <div className="px-6 py-6 bg-gradient-to-b from-gray-900/50 to-black">
+            <div className="flex items-center gap-6">
+              <button className="w-14 h-14 bg-green-500 hover:bg-green-400 rounded-full flex items-center justify-center transition-all hover:scale-105">
+                <Play size={20} className="text-black ml-1" fill="black" />
+              </button>
+              <button className="w-8 h-8 flex items-center justify-center hover:bg-gray-800 rounded-full transition-colors">
+                <UserPlus size={20} className="text-gray-400 hover:text-white" />
+              </button>
+              <button className="w-8 h-8 flex items-center justify-center hover:bg-gray-800 rounded-full transition-colors">
+                <MoreHorizontal size={20} className="text-gray-400 hover:text-white" />
+              </button>
+            </div>
           </div>
 
-          <div className="space-y-2">
-            {data?.hotSong!.map((song, index) => (
-              <MusicCards
-                image={song.AlbumArts}
-                title={song.title}
-                album={song.Album.name}
-                artist={song.Artists[0].name}
-                key={index}
-                songId={song.id}
-                ImageId={song.AlbumArtsID}
-                ArtistId={song.Artists[0].id}
-              />
-            ))}
+          {/* Popular Songs */}
+          <div className="px-6 pb-6">
+            <h2 className="text-xl font-bold text-white mb-4">Popular</h2>
+            <div className="space-y-1">
+              {data?.hotSong!.map((song, index) => (
+                <MusicCards
+                  image={song.AlbumArts}
+                  title={song.title}
+                  album={song.Album.name}
+                  artist={song.Artists[0].name}
+                  key={index}
+                  index={index}
+                  songId={song.id}
+                  ImageId={song.AlbumArtsID}
+                  ArtistId={song.Artists[0].id}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );
 };
+
 export default Artist;

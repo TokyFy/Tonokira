@@ -1,77 +1,128 @@
-import React, {FunctionComponent} from "react";
-import {useLocation, useParams} from "react-router-dom";
-import {GetLyrics} from "../../service";
-import {useQuery} from "react-query";
+import React, { FunctionComponent } from "react";
+import { useLocation, useParams } from "react-router-dom";
+import { GetLyrics } from "../../service";
+import { useQuery } from "react-query";
 import LyricsSkeleton from "./LyricsSkeleton";
-import Btn from "../../components/Btn";
-import {IMAGE_PROXY_URL} from "../../constant";
-import {Download, Printer, DownloadCloud, ArrowDownFromLine, ArrowDown} from "lucide-react"
-import MusicCards from "../../components/MusicCards";
+import { IMAGE_PROXY_URL } from "../../constant";
+import { Download, Play, Heart, MoreHorizontal, Music } from "lucide-react";
 
 const Lyrics: FunctionComponent = () => {
-    const {id} = useParams();
+  const { id } = useParams();
+  const { title, artist, image, album, ArtistId } = useLocation().state;
 
-    const {title, artist, image, album, ArtistId} = useLocation().state;
+  const {
+    isLoading,
+    isError,
+    data: LyricsData,
+    error,
+  } = useQuery(["Lyrics", id], ({}) => GetLyrics(`${id}`), {
+    staleTime: 5 * (60 * 1000),
+    cacheTime: 2.5 * (60 * 1000),
+  });
 
-    const {
-        isLoading,
-        isError,
-        data: LyricsData,
-        error,
-    } = useQuery(["Lyrics", id], ({}) => GetLyrics(`${id}`), {
-        staleTime: 5 * (60 * 1000),
-        cacheTime: 2.5 * (60 * 1000),
+  function downloadTxtFile(Lrc: string, title: string, Artist: string) {
+    const blob = new Blob([Lrc], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${title} - ${Artist}.lrc`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }
+
+  const lyrics = LyricsData?.lyric
+    .split("\n")
+    .filter((el) => !(el.includes("[00:00.00") || el.includes("[00:01.00")))
+    .map((el) => {
+      return [
+        el.match(/\[\d{2,3}:\d{2,3}\.\d{2,3}]/),
+        el.replace(/\[\d{2,3}:\d{2,3}\.\d{2,3}]/, ""),
+      ];
     });
 
-    function downloadTxtFile(Lrc: string, title: string, Artist: string) {
-        const blob = new Blob([Lrc], {type: "text/plain"});
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = `${title} - ${Artist}.lrc`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url);
-    }
-
-    const lyrics = LyricsData?.lyric
-        .split("\n")
-        .filter((el) => !(el.includes("[00:00.00") || el.includes("[00:01.00")))
-        .map((el) => {
-            return [el.match(/\[\d{2,3}:\d{2,3}\.\d{2,3}]/) , el.replace(/\[\d{2,3}:\d{2,3}\.\d{2,3}]/, "")]
-        });
-
-    return (
-        <div className={""}>
-            <div className="py-4">
-                <MusicCards image={image} title={title} album={album} artist={artist} songId={String(id)}
-                            ArtistId={ArtistId}/>
+  return (
+    <div>
+      {isLoading ? (
+        <LyricsSkeleton />
+      ) : (
+        <>
+          {/* Song Header */}
+          <div className="relative">
+            <div className="bg-gradient-to-b from-gray-700 to-gray-900 px-6 pt-16 pb-6">
+              <div className="flex items-end gap-6">
+                <div className="w-56 h-56 bg-gray-700 rounded-lg overflow-hidden flex items-center justify-center shadow-2xl">
+                  {image ? (
+                    <img
+                      className="w-full h-full object-cover"
+                      src={`${IMAGE_PROXY_URL}${image}`}
+                      alt={title}
+                    />
+                  ) : (
+                    <Music size={80} className="text-gray-400" />
+                  )}
+                </div>
+                <div className="pb-6">
+                  <p className="text-sm font-bold text-white mb-2">Song</p>
+                  <h1 className="text-6xl font-black text-white mb-2">{title}</h1>
+                  <div className="flex items-center gap-1 text-gray-300">
+                    <span className="font-semibold hover:underline cursor-pointer">
+                      {artist}
+                    </span>
+                    <span>•</span>
+                    <span>{album}</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            {isLoading ? (
-                <LyricsSkeleton/>
-            ) : (
-                <>
-                    <div className={"relative text-neutral-900 text-sm dark:text-neutral-300 "}>
-                        {lyrics?.map((el, index) => {
-                            return <p className={"group/lyrics py-1 hover:text-purple-500 w-max"} key={index}>
-                                <span className="text-xs font-bold text-neutral-300 group-hover/lyrics:text-neutral-800 pr-3 font-mono dark:text-gray-700">{el[0]}</span>
-                                <span className="italic w-min">{el[1]}</span>
-                                {index !== 0 && index % 4 === 0 && <span key={`p=${index}`} className={"h-4 block"}></span>}
-                            </p>
-                        })}
+          </div>
 
-                        <div
-                            className={"absolute flex w-5 aspect-square border-2 border-neutral-200 hover:bg-neutral-900 hover:border-neutral-900 hover:text-neutral-200 text-neutral-400 right-0 top-1 justify-center items-center rounded-full duration-200 cursor-pointer"}
-                            onClick={() => downloadTxtFile(`${LyricsData?.lyric}`, title, artist)}
-                        >
-                            <ArrowDown absoluteStrokeWidth size={12}/>
-                        </div>
+          {/* Controls */}
+          <div className="px-6 py-6 bg-gradient-to-b from-gray-900/50 to-black">
+            <div className="flex items-center gap-6">
+              <button className="w-14 h-14 bg-green-500 hover:bg-green-400 rounded-full flex items-center justify-center transition-all hover:scale-105">
+                <Play size={20} className="text-black ml-1" fill="black" />
+              </button>
+              <button className="w-8 h-8 flex items-center justify-center hover:bg-gray-800 rounded-full transition-colors">
+                <Heart size={20} className="text-gray-400 hover:text-white" />
+              </button>
+              <button 
+                onClick={() => downloadTxtFile(`${LyricsData?.lyric}`, title, artist)}
+                className="w-8 h-8 flex items-center justify-center hover:bg-gray-800 rounded-full transition-colors"
+              >
+                <Download size={20} className="text-gray-400 hover:text-white" />
+              </button>
+              <button className="w-8 h-8 flex items-center justify-center hover:bg-gray-800 rounded-full transition-colors">
+                <MoreHorizontal size={20} className="text-gray-400 hover:text-white" />
+              </button>
+            </div>
+          </div>
+
+          {/* Lyrics */}
+          <div className="px-6 pb-6">
+            <h2 className="text-xl font-bold text-white mb-6">Lyrics</h2>
+            <div className="bg-gradient-to-b from-gray-900/30 to-black/30 rounded-lg p-6">
+              <div className="space-y-2 max-w-4xl">
+                {lyrics?.map((el, index) => {
+                  return (
+                    <div key={index} className="group flex items-start gap-4 py-1 hover:bg-gray-800/30 rounded px-2 transition-colors">
+                      <span className="text-xs text-gray-500 font-mono mt-1 w-16 flex-shrink-0">
+                        {el[0] ? el[0][0].replace(/[\[\]]/g, '') : ''}
+                      </span>
+                      <p className="text-white text-lg leading-relaxed flex-1">
+                        {el[1]}
+                      </p>
                     </div>
-                </>
-            )}
-        </div>
-    );
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  );
 };
 
 export default Lyrics;

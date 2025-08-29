@@ -1,26 +1,28 @@
-import React, {FunctionComponent} from "react";
+import React, { FunctionComponent } from "react";
 
-interface OwnProps {
-}
+interface OwnProps {}
 
 type Props = OwnProps;
 
 const Copyright: FunctionComponent<Props> = (props) => {
-    return (
-        <div className="text-gray-500 hover:text-gray-300 transition-colors">
-            <p className="text-sm leading-relaxed">
-                Made with <span className="text-red-400">♥</span> by{" "}
-                <a 
-                    className="font-semibold text-green-400 hover:text-green-300 hover:underline transition-colors" 
-                    href="https://toky.vercel.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Toky
-                </a>
-            </p>
-        </div>
-    );
+  return (
+    <div className="text-gray-500 text-xs">
+      <p className="mb-2">
+        Made with <span className="text-red-500">♥</span> by{" "}
+        <a 
+          className="text-white hover:text-green-400 hover:underline transition-colors font-semibold" 
+          href="https://toky.vercel.app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Toky
+        </a>
+      </p>
+      <p className="text-gray-600">
+        © 2025 Lirikisa. All rights reserved.
+      </p>
+    </div>
+  );
 };
 
 export default Copyright;
