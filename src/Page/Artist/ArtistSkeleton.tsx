@@ -28,19 +28,6 @@ const ArtistSkeleton: FunctionComponent = () => {
       </div>
     </div>
 
-        </div>
-
-        <div className={""}>
-          <MusicCardSkeleton />
-          <MusicCardSkeleton />
-          <MusicCardSkeleton />
-          <MusicCardSkeleton />
-          <MusicCardSkeleton />
-          <MusicCardSkeleton />
-          <MusicCardSkeleton />
-          <MusicCardSkeleton />
-        </div>
-      </div>
     </>
   );
 };
