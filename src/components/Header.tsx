@@ -31,7 +31,7 @@ const Header: FunctionComponent = () => {
                 onClick={() => switchTheme()}
             >
                 {dark ? <Sun size={18} /> : <Moon size={18} />}
-            </div>
+            </button>
         </div>
     );
 };
