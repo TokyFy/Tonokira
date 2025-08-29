@@ -3,6 +3,7 @@ import { MusicCardSkeleton } from "../../components/MusicCards";
 
 const ArtistSkeleton: FunctionComponent = () => {
   return (
+    <>
     <div className="p-8">
       <div className="flex items-center gap-6 mb-8">
         <div className="w-32 h-32 bg-gray-600 rounded-full animate-pulse"></div>
@@ -26,8 +27,6 @@ const ArtistSkeleton: FunctionComponent = () => {
         <MusicCardSkeleton />
       </div>
     </div>
-  );
-};
 
         </div>
 
