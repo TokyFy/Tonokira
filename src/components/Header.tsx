@@ -1,16 +1,17 @@
 import React, { FunctionComponent } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronLeft, ChevronRight, User } from "lucide-react";
+import { ChevronLeft, ChevronRight, User  } from "lucide-react";
+
 
 const Header: FunctionComponent = () => {
   const navigate = useNavigate();
 
   return (
-    <header className="sticky top-0 z-20 bg-black/80 backdrop-blur-md">
-      <div className="flex items-center justify-between p-4">
-          Home
+    <header className="py-2 px-6">
+      <div className="p-4 rounded-md w-max cursor-pointer bg-neutral-900 hover:bg-green-500">
+           <ChevronLeft size={24}/> 
       </div>
-    </header>
+    </header> 
   );
 };
 

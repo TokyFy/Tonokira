@@ -93,7 +93,7 @@ body::-webkit-scrollbar-thumb:hover {
 .spotify-search {
   background-color: #242424;
   border: none;
-  border-radius: 500px;
+  border-radius: 12px;
   color: #ffffff;
   padding: 12px 48px 12px 48px;
   font-size: 14px;
