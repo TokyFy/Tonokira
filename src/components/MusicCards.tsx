@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {IMAGE_PROXY_URL} from "../constant";
 import {useQuery} from "react-query";
 import {GetPictures} from "../service";
-import {ArrowUp, ArrowUpRight} from "lucide-react";
+import {Play, User} from "lucide-react";
 
 interface OwnProps {
     image?: string;
@@ -56,35 +56,41 @@ const MusicCards: FunctionComponent<Props> = (
     };
 
     return (
-        <div
-            className={"group flex flex-row-reverse items-center cursor-pointer gap-1  my-1 p-1 border border-stone-200 rounded-sm hover:bg-neutral-100 dark:hover:bg-gray-900 dark:border-gray-500"}
-            onClick={() => cardClickHandler()}>
-            <div
-                className={"aspect-square overflow-hidden duration-300 transition-transform rounded-sm flex justify-center items-center text-neutral-400 group-hover:text-inherit group-hover:rotate-45"}>
-                {/*{isLoading ? null : (*/}
-                {/*    <img src={`${IMAGE_PROXY_URL}${data?.url}`} alt=""/>*/}
-                {/*)}*/}
-                <ArrowUpRight size={14}/>
+        <div className="group flex items-center gap-4 p-4 rounded-lg hover:bg-gray-700/30 cursor-pointer transition-all border border-transparent hover:border-gray-600/30">
+            <div className="relative">
+                <div className="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center overflow-hidden">
+                    {isLoading ? (
+                        <div className="w-full h-full bg-gray-600 animate-pulse rounded-lg"></div>
+                    ) : data?.url ? (
+                        <img 
+                            src={`${IMAGE_PROXY_URL}${data.url}`} 
+                            alt={title}
+                            className="w-full h-full object-cover"
+                        />
+                    ) : (
+                        <Music size={20} className="text-gray-400" />
+                    )}
+                </div>
+                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
+                    <Play size={16} className="text-white" fill="white" />
+                </div>
             </div>
-            <div className={"flex text-xs grow justify-between items-center"}>
-                <p
-                    className={"first-letter:uppercase font-bold text-neutral-600 group-hover:text-neutral-800 dark:group-hover:text-gray-200 duration-500 dark:text-gray-300"}>
+            
+            <div className="flex-1 min-w-0" onClick={() => cardClickHandler()}>
+                <h3 className="text-white font-medium truncate group-hover:text-green-400 transition-colors">
+                    {title}
+                </h3>
+                <div className="flex items-center gap-2 text-sm text-gray-400">
                     <span
-                        className="group-hover:underline cursor-cell"
+                        className="hover:text-white hover:underline cursor-pointer transition-colors"
                         onClick={(event) => {
                             event.stopPropagation();
                             ArtistNameClickHandler();
                         }}
                     >
                         {artist}
-                    </span>
-                    <span className="inline-block px-1">—</span>{title}
-                </p>
-                <p
-                    className={"text-neutral-400  dark:text-gray-500"}
-                >
-                    <strong>{album}</strong>
-                </p>
+                    </span> • <span>{album}</span>
+                </div>
             </div>
         </div>
     );
@@ -92,20 +98,13 @@ const MusicCards: FunctionComponent<Props> = (
 
 export const MusicCardSkeleton: FunctionComponent = () => {
     return (
-        <div className={"group flex p-1 items-center cursor-pointer gap-4  my-1 border rounded hover:bg-neutral-50"}>
-            <div
-                className={"w-6 aspect-square overflow-hidden bg-neutral-300 duration-300 rounded-sm grayscale group-hover:grayscale-0"}>
-
+        <div className="flex items-center gap-4 p-4 rounded-lg">
+            <div className="w-12 h-12 bg-gray-600 rounded-lg animate-pulse">
             </div>
-            <p className={"flex text-sm grow justify-between items-center"}>
-                <span
-                    className={"first-letter:uppercase font-bold bg-neutral-200 w-32 h-3 group-hover:text-purple-400 duration-500 dark:text-gray-300"}></span>
-                <span
-                    className={"text-neutral-400 text-[12px] dark:text-gray-500 bg-neutral-200 w-32 h-3"}
-                >
-                  <strong className="group-hover:underline first-letter:uppercase"></strong>
-                </span>
-            </p>
+            <div className="flex-1">
+                <div className="h-4 bg-gray-600 rounded w-3/4 mb-2 animate-pulse"></div>
+                <div className="h-3 bg-gray-700 rounded w-1/2 animate-pulse"></div>
+            </div>
         </div>
     );
 };

@@ -7,9 +7,12 @@ interface props {
 
 const Btn: FunctionComponent<props> = ({  children, onClick }) => {
   return (
-    <div onClick={onClick} className={"w-max font-bold text-[12px] border-b border-neutral-400 text-neutral-500 cursor-pointer border-dashed hover:border-neutral-800 hover:text-neutral-800 dark:text-neutral-200 dark:hover:border-neutral-200"}>
+    <button 
+      onClick={onClick} 
+      className="px-4 py-2 bg-gray-700/50 hover:bg-gray-600/50 text-gray-300 hover:text-white rounded-lg border border-gray-600/30 hover:border-gray-500/50 transition-all font-medium text-sm"
+    >
       {children}
-    </div>
+    </button>
   );
 };
 

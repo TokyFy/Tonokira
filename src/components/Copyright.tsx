@@ -7,11 +7,17 @@ type Props = OwnProps;
 
 const Copyright: FunctionComponent<Props> = (props) => {
     return (
-        <div className={"group text-neutral-400 hover:text-neutral-700 dark:text-gray-600 dark:hover:text-gray-400"}>
-            <p>
-                Hello (~-~) , <br/>
-                Yet another Lyrics finder App ...<br/><br/>
-                Made with {"<3"} By <a className="font-bold" href="https://toky.vercel.app">Toky</a> (toky.vercel.app)<br/>
+        <div className="text-gray-500 hover:text-gray-300 transition-colors">
+            <p className="text-sm leading-relaxed">
+                Made with <span className="text-red-400">♥</span> by{" "}
+                <a 
+                    className="font-semibold text-green-400 hover:text-green-300 hover:underline transition-colors" 
+                    href="https://toky.vercel.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Toky
+                </a>
             </p>
         </div>
     );

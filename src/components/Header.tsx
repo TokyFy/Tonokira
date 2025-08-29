@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {Sparkles, Paintbrush2, Circle, CircleDashed, CircleSlashed, CircleOff, CircleDot} from "lucide-react";
+import {Music, Sun, Moon} from "lucide-react";
 
 const Header: FunctionComponent = () => {
 
@@ -14,12 +14,23 @@ const Header: FunctionComponent = () => {
     const navigate = useNavigate();
 
     return (
-        <div className={"flex items-center justify-between dark:border-gray-600 p-1"}>
-            <div className={"text-xs font-bold cursor-pointer hover:underline transition-transform duration-500 text-neutral-700 dark:text-neutral-300"} onClick={() => navigate("/")}>
-               # Lirikisa
+        <div className="flex items-center justify-between p-6 mb-6">
+            <div 
+                className="flex items-center gap-3 cursor-pointer group" 
+                onClick={() => navigate("/")}
+            >
+                <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Music size={16} className="text-black" />
+                </div>
+                <h1 className="text-2xl font-bold text-white group-hover:text-green-400 transition-colors">
+                    Lirikisa
+                </h1>
             </div>
-            <div className={"cursor-pointer text-neutral-700 dark:text-neutral-300"} onClick={() => switchTheme()}>
-                {dark ? <CircleDot absoluteStrokeWidth size={13}/> : <Circle absoluteStrokeWidth size={13}/>}
+            <button 
+                className="p-2 rounded-full bg-gray-700/50 hover:bg-gray-600/50 text-gray-300 hover:text-white transition-all"
+                onClick={() => switchTheme()}
+            >
+                {dark ? <Sun size={18} /> : <Moon size={18} />}
             </div>
         </div>
     );

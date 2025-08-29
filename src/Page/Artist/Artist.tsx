@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import { GetArtist } from "../../service";
 import MusicCards from "../../components/MusicCards";
 import ArtistSkeleton from "./ArtistSkeleton";
+import {User, Music} from "lucide-react";
 
 const Artist: FunctionComponent = (props) => {
   const { id } = useParams();
@@ -20,27 +21,40 @@ const Artist: FunctionComponent = (props) => {
 
 
   return (
-    <>
+    <div className="p-8">
       {isLoading ? (
         <ArtistSkeleton />
       ) : (
-        <div className={""}>
-          <div className={"flex flex-col gap-1 my-6 w-max p-1 rounded-sm border border-neutral-400 border-dashed items-center"}>
-            <div className={"w-20 min-w-full aspect-square overflow-hidden"}>
-              <img
-                  className={"w-full h-auto"}
-                src={`${IMAGE_PROXY_URL}${data?.picUrl}`}
-                alt={"album cover"}
-              />
+        <div>
+          <div className="flex items-center gap-6 mb-8">
+            <div className="w-32 h-32 bg-gray-700 rounded-full overflow-hidden flex items-center justify-center">
+              {data?.picUrl ? (
+                <img
+                  className="w-full h-full object-cover"
+                  src={`${IMAGE_PROXY_URL}${data.picUrl}`}
+                  alt={data.name}
+                />
+              ) : (
+                <User size={48} className="text-gray-400" />
+              )}
             </div>
-            <p className={"text-neutral-900 font-bold first-letter:uppercase text-center dark:text-neutral-200 "}>{data?.name}</p>
+            <div>
+              <p className="text-sm text-gray-400 font-medium mb-2">ARTIST</p>
+              <h1 className="text-4xl font-bold text-white mb-4">{data?.name}</h1>
+              <div className="flex items-center gap-4 text-gray-400">
+                <span>{data?.hotSong?.length || 0} popular songs</span>
+              </div>
+            </div>
           </div>
 
-          <div className="font-bold text-neutral-500 underline">
-            Popular songs :
+          <div className="mb-6">
+            <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+              <Music size={20} className="text-green-400" />
+              Popular Songs
+            </h2>
           </div>
 
-          <div className={"py-2"}>
+          <div className="space-y-2">
             {data?.hotSong!.map((song, index) => (
               <MusicCards
                 image={song.AlbumArts}
@@ -56,7 +70,7 @@ const Artist: FunctionComponent = (props) => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 export default Artist;

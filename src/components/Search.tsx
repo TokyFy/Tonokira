@@ -1,5 +1,5 @@
 import React, {FunctionComponent, useEffect, useState} from "react";
-import {Sparkles, CornerRightDown, Paintbrush, CornerDownRight, CornerDownLeft} from "lucide-react"
+import {Search as SearchIcon} from "lucide-react"
 
 interface OwnProps {
     onClick: (str: string) => void;
@@ -25,24 +25,28 @@ const Search: FunctionComponent<Props> = ({ onClick, InputValue, placeHolder,}) 
     };
 
     return (
-        <div className={"group flex border border-neutral-200 rounded-sm dark:border-gray-600 h-8 items-center px-2  hover:border-neutral-400 dark:hover:border-gray-400"}>
+        <div className="relative group">
             <input
-                className={"focus:outline-0 grow h-full text-md font-primary text-neutral-700 placeholder:text-neutral-400 bg-transparent dark:text-gray-200 dark:placeholder:text-gray-600"}
+                className="w-full h-12 pl-12 pr-4 bg-gray-700/50 border border-gray-600/50 rounded-full text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent hover:bg-gray-700/70 transition-all"
                 type="text"
                 name="search"
                 spellCheck={false}
                 autoComplete={"off"}
-                placeholder={placeHolder || "Type your best song here..."}
+                placeholder={placeHolder || "What do you want to listen to?"}
                 onChange={(el) => setValue(el.target.value)}
                 onKeyDown={handleKeyDown}
                 value={value}
-            ></input>
-            <div
-                className="cursor-pointer text-neutral-400 hover:text-neutral-800 dark:text-gray-700 group-hover:text-neutral-800 dark:group-hover:text-gray-200"
+            />
+            <SearchIcon 
+                size={20} 
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-white transition-colors"
+            />
+            <button
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-green-500 hover:bg-green-400 text-black font-semibold px-4 py-1.5 rounded-full text-sm transition-all hover:scale-105"
                 onClick={() => onClick(value)}
             >
-                <CornerDownLeft absoluteStrokeWidth size={13}/>
-            </div>
+                Search
+            </button>
         </div>
     );
 };

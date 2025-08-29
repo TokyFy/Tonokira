@@ -7,15 +7,17 @@ import Artist from "./Page/Artist/Artist";
 
 function App() {
   return (
-    <div className="flex p-3">
-      <div className="w-full max-w-lg rounded-md border-neutral-400">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
+      <div className="max-w-4xl mx-auto px-4 py-6">
         <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="search" element={<Result />} />
-          <Route path="lyrics/:id" element={<Lyrics />} />
-          <Route path="artist/:id" element={<Artist />} />
-        </Routes>
+        <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700/50 overflow-hidden">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="search" element={<Result />} />
+            <Route path="lyrics/:id" element={<Lyrics />} />
+            <Route path="artist/:id" element={<Artist />} />
+          </Routes>
+        </div>
       </div>
     </div>
   );

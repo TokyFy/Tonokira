@@ -6,19 +6,23 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  transition: color,background-color 100ms ease-in;
+  transition: all 200ms ease-in-out;
 }
 
 *::selection {
-  background-color: #1c1c1c;
-  color: white;
+  background-color: #1db954;
+  color: #000;
 }
 
 *:first-letter::selection{
-  background-color: #1c1c1c!important;
-  color: white;
+  background-color: #1db954!important;
+  color: #000;
 }
 
+body {
+  background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+  color: #ffffff;
+}
 
 @font-face {
   font-family: "favorit";
@@ -40,4 +44,8 @@
 
 body::-webkit-scrollbar {
   display: none;
+}
+
+.spotify-gradient {
+  background: linear-gradient(135deg, #1db954 0%, #1ed760 100%);
 }
