@@ -148,7 +148,7 @@ const Lyrics: FunctionComponent = () => {
       )}
 
       {/* Main Content */}
-      <div className="relative min-h-screen mt-12">
+      <div className="relative min-h-screen mt-12 rounded-md">
         {/* Header Section */}
         <div className="relative px-12 pt-12 pb-12">
           <div className="flex items-start gap-6 mb-8">
