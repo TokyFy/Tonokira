@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CSS Custom Properties for Dynamic Colors */
+:root {
+  --color-primary: #1f2937;
+  --color-secondary: #374151;
+  --color-accent: #6366f1;
+  --color-text: #ffffff;
+  --color-text-secondary: #d1d5db;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -35,6 +44,56 @@ body::-webkit-scrollbar-thumb {
 
 body::-webkit-scrollbar-thumb:hover {
   background: #727272;
+}
+
+/* Dynamic color utilities */
+.text-dynamic {
+  color: var(--color-text);
+}
+
+.text-dynamic-secondary {
+  color: var(--color-text-secondary);
+}
+
+.bg-dynamic-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-dynamic-secondary {
+  background-color: var(--color-secondary);
+}
+
+.bg-dynamic-accent {
+  background-color: var(--color-accent);
+}
+
+/* Enhanced animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
 }
 
 /* Spotify-like button styles */
