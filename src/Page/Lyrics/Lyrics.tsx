@@ -203,7 +203,7 @@ const Lyrics: FunctionComponent = () => {
           {/* Action Buttons */}
           <div className="flex items-center gap-4 mb-8">
             <button className="w-14 h-14 bg-white hover:bg-gray-100 rounded-full flex items-center justify-center transition-all hover:scale-105 shadow-lg">
-              <Download size={20} className="text-black ml-1" fill="black" />
+              <Download size={20} className="text-black ml-1"/>
             </button>
             <button 
               className="w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-105"
