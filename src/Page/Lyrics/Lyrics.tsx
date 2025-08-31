@@ -205,25 +205,6 @@ const Lyrics: FunctionComponent = () => {
             <button className="w-14 h-14 bg-white hover:bg-gray-100 rounded-full flex items-center justify-center transition-all hover:scale-105 shadow-lg">
               <Download size={20} className="text-black ml-1"/>
             </button>
-            <button 
-              className="w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-105"
-              style={{ backgroundColor: `${colorPalette?.accent}40` }}
-            >
-              <Heart size={20} style={{ color: colorPalette?.text }} />
-            </button>
-            <button 
-              className="w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-105"
-              style={{ backgroundColor: `${colorPalette?.accent}40` }}
-              onClick={() => downloadTxtFile(`${LyricsData?.lyric}`, title, artist)}
-            >
-              <Download size={20} style={{ color: colorPalette?.text }} />
-            </button>
-            <button 
-              className="w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-105"
-              style={{ backgroundColor: `${colorPalette?.accent}40` }}
-            >
-              <Share size={20} style={{ color: colorPalette?.text }} />
-            </button>
           </div>
         </div>
 
