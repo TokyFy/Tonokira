@@ -190,15 +190,6 @@ const Lyrics: FunctionComponent = () => {
             </div>
           </div>
 
-          {/* Notice */}
-          <div className="mb-8">
-            <p 
-              className="text-sm opacity-70 italic"
-              style={{ color: colorPalette?.textSecondary }}
-            >
-              These lyrics aren't time-synced, yet.
-            </p>
-          </div>
 
           {/* Action Buttons */}
           <div className="flex items-center gap-4 mb-8">
