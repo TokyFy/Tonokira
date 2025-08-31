@@ -73,7 +73,7 @@ const Lyrics: FunctionComponent = () => {
   }
 
   const dynamicStyles = colorPalette ? {
-    background: `linear-gradient(135deg, ${colorPalette.primary} 0%, ${colorPalette.secondary} 50%, #000000 100%)`,
+    background: `linear-gradient(135deg, ${colorPalette.primary} 0%, ${colorPalette.secondary} 50%, ${colorPalette.secondary} 100%)`,
     color: colorPalette.text
   } : {};
 
