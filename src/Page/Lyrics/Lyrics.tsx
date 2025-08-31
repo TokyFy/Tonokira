@@ -150,7 +150,7 @@ const Lyrics: FunctionComponent = () => {
       {/* Main Content */}
       <div className="relative min-h-screen">
         {/* Header Section */}
-        <div className="relative px-6 pt-16 pb-8">
+        <div className="relative px-6 pt-6 pb-8">
           <div className="flex items-start gap-6 mb-8">
             {/* Album Art */}
             <div className="w-48 h-48 rounded-2xl overflow-hidden shadow-2xl flex-shrink-0">
