@@ -252,7 +252,7 @@ const Lyrics: FunctionComponent = () => {
                     {/* Lyric Text */}
                     <div className="flex-1">
                       <p 
-                        className="text-2xl md:text-3xl font-light leading-relaxed transition-all duration-300 group-hover:font-normal"
+                        className="text-2xl md:text-3xl font-bold leading-relaxed transition-all duration-300 group-hover:font-normal"
                         style={{ color: colorPalette?.text }}
                       >
                         {lyricText}
