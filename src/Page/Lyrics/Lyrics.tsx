@@ -255,7 +255,7 @@ const Lyrics: FunctionComponent = () => {
             <div className="space-y-4">
               {lyrics?.map((el, index) => {
                 const hasTimestamp = el[0];
-                const lyricText = el[1]?.trim();
+                const lyricText = el[1];
                 
                 if (!lyricText) return null;
 
