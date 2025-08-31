@@ -292,66 +292,6 @@ const Lyrics: FunctionComponent = () => {
             </div>
           </div>
         </div>
-
-        {/* Bottom Player Bar Simulation */}
-        <div 
-          className="fixed bottom-0 left-0 right-0 h-20 backdrop-blur-md border-t"
-          style={{ 
-            backgroundColor: `${colorPalette?.primary}90`,
-            borderColor: `${colorPalette?.accent}30`
-          }}
-        >
-          <div className="flex items-center justify-between h-full px-6">
-            {/* Song Info */}
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-lg overflow-hidden">
-                {image ? (
-                  <img
-                    src={`${IMAGE_PROXY_URL}${image}`}
-                    alt={title}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gray-700 flex items-center justify-center">
-                    <Music size={16} className="text-gray-400" />
-                  </div>
-                )}
-              </div>
-              <div>
-                <p className="font-semibold text-sm" style={{ color: colorPalette?.text }}>{title}</p>
-                <p className="text-xs" style={{ color: colorPalette?.textSecondary }}>{artist}</p>
-              </div>
-            </div>
-
-            {/* Center Controls */}
-            <div className="flex items-center gap-4">
-              <button className="w-10 h-10 rounded-full bg-white hover:bg-gray-100 flex items-center justify-center transition-all hover:scale-105">
-                <Play size={16} className="text-black ml-0.5" fill="black" />
-              </button>
-            </div>
-
-            {/* Right Controls */}
-            <div className="flex items-center gap-3">
-              <button className="w-8 h-8 rounded-full hover:bg-white/20 flex items-center justify-center transition-all">
-                <Heart size={16} style={{ color: colorPalette?.text }} />
-              </button>
-              <button className="w-8 h-8 rounded-full hover:bg-white/20 flex items-center justify-center transition-all">
-                <MoreHorizontal size={16} style={{ color: colorPalette?.text }} />
-              </button>
-            </div>
-          </div>
-
-          {/* Progress Bar */}
-          <div 
-            className="absolute top-0 left-0 right-0 h-1"
-            style={{ backgroundColor: `${colorPalette?.accent}30` }}
-          >
-            <div 
-              className="h-full w-1/3 transition-all duration-300"
-              style={{ backgroundColor: colorPalette?.accent }}
-            ></div>
-          </div>
-        </div>
       </div>
     </div>
   );
