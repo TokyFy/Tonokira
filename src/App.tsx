@@ -12,7 +12,7 @@ function App() {
       {/* Main Content */}
       <div className="flex-1 mx-60">
         <div className="bg-gradient-to-b from-gray-800/20 to-black min-h-screen">
-          <Header />
+          {/*<Header />*/}
           <main className="pb-6">
             <Routes>
               <Route path="/" element={<Home />} />
