@@ -219,7 +219,7 @@ const Lyrics: FunctionComponent = () => {
                   border: `1px solid ${colorPalette?.accent}40`
                 }}
               >
-                Fullscreen
+                ""
               </button>
             </div>
 
