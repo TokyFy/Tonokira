@@ -4,14 +4,13 @@ import { GetLyrics } from "../../service";
 import { useQuery } from "react-query";
 import LyricsSkeleton from "./LyricsSkeleton";
 import { IMAGE_PROXY_URL } from "../../constant";
-import { Download, Play, Heart, MoreHorizontal, Music, X, Share } from "lucide-react";
+import { Download, Play, Heart, MoreHorizontal, Music, Share } from "lucide-react";
 import { extractColorsFromImage, applyColorPalette, ColorPalette } from "../../utils/colorExtractor";
 
 const Lyrics: FunctionComponent = () => {
   const { id } = useParams();
   const { title, artist, image, album, ArtistId } = useLocation().state;
   const [colorPalette, setColorPalette] = useState<ColorPalette | null>(null);
-  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const {
     isLoading,
@@ -62,10 +61,7 @@ const Lyrics: FunctionComponent = () => {
     .split("\n")
     .filter((el) => !(el.includes("[00:00.00") || el.includes("[00:01.00")))
     .map((el) => {
-      return [
-        el.match(/\[\d{2,3}:\d{2,3}\.\d{2,3}]/),
-        el.replace(/\[\d{2,3}:\d{2,3}\.\d{2,3}]/, ""),
-      ];
+      return el.replace(/\[\d{2,3}:\d{2,3}\.\d{2,3}]/, "").trim();
     });
 
   if (isLoading) {
@@ -82,70 +78,6 @@ const Lyrics: FunctionComponent = () => {
       className="min-h-screen transition-all duration-1000 ease-out"
       style={dynamicStyles}
     >
-      {/* Fullscreen Lyrics Modal */}
-      {isFullscreen && (
-        <div className="fixed inset-0 z-50 flex flex-col" style={dynamicStyles}>
-          {/* Header */}
-          <div className="flex items-center justify-between p-6 bg-black/20 backdrop-blur-sm">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-lg overflow-hidden">
-                {image ? (
-                  <img
-                    src={`${IMAGE_PROXY_URL}${image}`}
-                    alt={title}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gray-700 flex items-center justify-center">
-                    <Music size={20} className="text-gray-400" />
-                  </div>
-                )}
-              </div>
-              <div>
-                <h3 className="font-bold text-lg" style={{ color: colorPalette?.text }}>{title}</h3>
-                <p className="text-sm" style={{ color: colorPalette?.textSecondary }}>{artist}</p>
-              </div>
-            </div>
-            <button
-              onClick={() => setIsFullscreen(false)}
-              className="w-10 h-10 rounded-full bg-black/30 hover:bg-black/50 flex items-center justify-center transition-colors"
-            >
-              <X size={20} style={{ color: colorPalette?.text }} />
-            </button>
-          </div>
-
-          {/* Fullscreen Lyrics */}
-          <div className="flex-1 overflow-y-auto px-6 pb-6">
-            <div className="max-w-4xl mx-auto space-y-6 py-8">
-              {lyrics?.map((el, index) => (
-                <div key={index} className="text-center">
-                  <p 
-                    className="text-3xl md:text-4xl font-light leading-relaxed transition-all duration-300 hover:scale-105"
-                    style={{ color: colorPalette?.text }}
-                  >
-                    {el[1]}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Bottom Controls */}
-          <div className="p-6 bg-black/20 backdrop-blur-sm">
-            <div className="flex items-center justify-center gap-8">
-              <button className="w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-all">
-                <Heart size={20} style={{ color: colorPalette?.text }} />
-              </button>
-              <button className="w-16 h-16 rounded-full bg-white hover:bg-gray-100 flex items-center justify-center transition-all hover:scale-105">
-                <Play size={24} className="text-black ml-1" fill="black" />
-              </button>
-              <button className="w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-all">
-                <Share size={20} style={{ color: colorPalette?.text }} />
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Main Content */}
       <div className="relative min-h-screen">
@@ -219,62 +151,30 @@ const Lyrics: FunctionComponent = () => {
               <Download size={20} style={{ color: colorPalette?.text }} />
             </button>
             <button 
-              className="w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-105"
-              style={{ backgroundColor: `${colorPalette?.accent}40` }}
-            >
-              <Share size={20} style={{ color: colorPalette?.text }} />
-            </button>
-          </div>
-        </div>
-
-        {/* Lyrics Section */}
-        <div className="px-6 pb-20">
-          <div className="max-w-4xl">
-            {/* Section Title */}
-            <div className="flex items-center justify-between mb-8">
               <h2 
-                className="text-2xl font-bold"
+                className="text-2xl font-bold mb-8"
                 style={{ color: colorPalette?.text }}
               >
                 Lyrics
               </h2>
-              <button
                 onClick={() => setIsFullscreen(true)}
                 className="px-4 py-2 rounded-full text-sm font-semibold transition-all hover:scale-105"
                 style={{ 
-                  backgroundColor: `${colorPalette?.accent}20`,
-                  color: colorPalette?.text,
-                  border: `1px solid ${colorPalette?.accent}40`
-                }}
-              >
+                {lyrics?.map((lyricText, index) => {
+                  if (!lyricText) return null;
                 Fullscreen
               </button>
             </div>
 
-            {/* Lyrics Content */}
+                      className="group py-3 px-4 rounded-lg transition-all duration-300 hover:scale-[1.02]"
             <div className="space-y-4">
               {lyrics?.map((el, index) => {
-                const hasTimestamp = el[0];
-                const lyricText = el[1]?.trim();
-                
-                if (!lyricText) return null;
-
-                return (
-                  <div 
-                    key={index} 
-                    className="group flex items-start gap-6 py-2 px-4 rounded-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer"
-                    style={{ backgroundColor: `${colorPalette?.accent}10` }}
-                  >
-                    {/* Timestamp */}
-                    {hasTimestamp && (
-                      <div className="flex-shrink-0 w-16 pt-1">
-                        <span 
-                          className="text-xs font-mono opacity-60"
-                          style={{ color: colorPalette?.textSecondary }}
-                        >
-                          {hasTimestamp[0].replace(/[\[\]]/g, '')}
-                        </span>
-                      </div>
+                      <p 
+                        className="text-2xl md:text-3xl font-light leading-relaxed transition-all duration-300 group-hover:font-normal"
+                        style={{ color: colorPalette?.text }}
+                      >
+                        {lyricText}
+                      </p>
                     )}
                     
                     {/* Lyric Text */}
@@ -290,66 +190,6 @@ const Lyrics: FunctionComponent = () => {
                 );
               })}
             </div>
-          </div>
-        </div>
-
-        {/* Bottom Player Bar Simulation */}
-        <div 
-          className="fixed bottom-0 left-0 right-0 h-20 backdrop-blur-md border-t"
-          style={{ 
-            backgroundColor: `${colorPalette?.primary}90`,
-            borderColor: `${colorPalette?.accent}30`
-          }}
-        >
-          <div className="flex items-center justify-between h-full px-6">
-            {/* Song Info */}
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-lg overflow-hidden">
-                {image ? (
-                  <img
-                    src={`${IMAGE_PROXY_URL}${image}`}
-                    alt={title}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gray-700 flex items-center justify-center">
-                    <Music size={16} className="text-gray-400" />
-                  </div>
-                )}
-              </div>
-              <div>
-                <p className="font-semibold text-sm" style={{ color: colorPalette?.text }}>{title}</p>
-                <p className="text-xs" style={{ color: colorPalette?.textSecondary }}>{artist}</p>
-              </div>
-            </div>
-
-            {/* Center Controls */}
-            <div className="flex items-center gap-4">
-              <button className="w-10 h-10 rounded-full bg-white hover:bg-gray-100 flex items-center justify-center transition-all hover:scale-105">
-                <Play size={16} className="text-black ml-0.5" fill="black" />
-              </button>
-            </div>
-
-            {/* Right Controls */}
-            <div className="flex items-center gap-3">
-              <button className="w-8 h-8 rounded-full hover:bg-white/20 flex items-center justify-center transition-all">
-                <Heart size={16} style={{ color: colorPalette?.text }} />
-              </button>
-              <button className="w-8 h-8 rounded-full hover:bg-white/20 flex items-center justify-center transition-all">
-                <MoreHorizontal size={16} style={{ color: colorPalette?.text }} />
-              </button>
-            </div>
-          </div>
-
-          {/* Progress Bar */}
-          <div 
-            className="absolute top-0 left-0 right-0 h-1"
-            style={{ backgroundColor: `${colorPalette?.accent}30` }}
-          >
-            <div 
-              className="h-full w-1/3 transition-all duration-300"
-              style={{ backgroundColor: colorPalette?.accent }}
-            ></div>
           </div>
         </div>
       </div>
