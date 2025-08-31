@@ -84,7 +84,7 @@ const Lyrics: FunctionComponent = () => {
     >
       {/* Fullscreen Lyrics Modal */}
       {isFullscreen && (
-        <div className="fixed inset-0 z-50 flex flex-col" style={dynamicStyles}>
+        <div className="fixed inset-0 z-50 flex flex-col rounded-md" style={dynamicStyles}>
           {/* Header */}
           <div className="flex items-center justify-between p-6 bg-black/20 backdrop-blur-sm">
             <div className="flex items-center gap-4">
